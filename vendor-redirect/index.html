@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Influence Board — Vendor Redirect (preview)</title>
+  <!-- PREVIEW-ONLY: these two lines just make the file look right when you open it in a browser. Do NOT paste them into WordPress. -->
+  <style>body{margin:0;background:#042D47;}</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- ===== PASTE EVERYTHING BELOW INTO YOUR WORDPRESS PAGE ======== -->
+<!-- (Custom HTML block, or WPCode. Your theme supplies header+footer; -->
+<!--  remember to remove the theme HEADER on this page, keep the FOOTER.) -->
+<!-- ============================================================= -->
+
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+<style>
+  /* ---- Theme integration (affects ONLY this page, since this CSS lives in the page):
+     hide the site's native header + nav so our own logo header is the only one,
+     and remove the theme's white spacing above/below our section. If a white band
+     remains, the theme uses a different class name and we'll adjust it. ---- */
+  .site-header, .nav-primary, .title-area, .header-widget-area,
+  .entry-header, .entry-title, .page-header, .archive-title { display: none !important; }
+  .site-inner, .content-sidebar-wrap, .content, .entry, .entry-content {
+    padding-top: 0 !important; padding-bottom: 0 !important;
+    margin-top: 0 !important; margin-bottom: 0 !important;
+  }
+
+  /* All .ibvr rules below are scoped so they never touch the rest of your site */
+  .ibvr, .ibvr *, .ibvr *::before, .ibvr *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .ibvr {
+    --tangerine:  #F15F3E;
+    --sunflower:  #FAA439;
+    --prussian:   #042D47;
+    --prussian-mid: #063654;
+    --celestial:  #499BC3;
+    --celestial-dark: #3a7fa3;
+    --white:      #FFFFFF;
+
+    background: var(--prussian);
+    color: #E7EDF1;
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+
+    /* Force full-bleed edge-to-edge, even inside a boxed theme layout */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow-x: hidden;
+  }
+
+  .ibvr h1, .ibvr h2, .ibvr h3 {
+    font-family: 'Aleo', Georgia, serif;
+    line-height: 1.15;
+  }
+
+  /* ── HEADER (custom, logo only) ── */
+  .ibvr .vr-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    background: rgba(4,45,71,0.96);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  .ibvr .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .ibvr .logo-img {
+    height: 34px;
+    width: auto;
+    display: block;
+  }
+
+  /* ── HERO ── */
+  .ibvr .hero {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 48px 64px;
+    text-align: center;
+  }
+
+  .ibvr .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--celestial);
+    margin-bottom: 20px;
+  }
+
+  .ibvr .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--celestial);
+    border-radius: 50%;
+    animation: vrpulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes vrpulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  .ibvr .hero h1 {
+    font-size: clamp(32px, 4.5vw, 50px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .ibvr .hero h1 em {
+    font-style: italic;
+    color: var(--sunflower);
+  }
+
+  .ibvr .hero-sub {
+    font-size: 18px;
+    font-weight: 400;
+    color: #E7EDF1;
+    max-width: 600px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+
+  /* ── WHAT JUST HAPPENED (visual flow) ── */
+  .ibvr .vr-flow-wrap {
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+
+  .ibvr .vr-flow-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #C6D8E4;
+    margin-bottom: 16px;
+  }
+
+  .ibvr .vr-flow {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .ibvr .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 160px;
+    padding: 18px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(73,155,195,0.18);
+    border-radius: 12px;
+  }
+
+  .ibvr .flow-node .material-symbols-outlined {
+    font-size: 26px;
+    color: var(--celestial);
+  }
+
+  .ibvr .flow-node-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #E7EDF1;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .ibvr .flow-node-ib {
+    border-color: rgba(250,164,57,0.5);
+    background: rgba(250,164,57,0.08);
+  }
+
+  .ibvr .flow-node-ib .material-symbols-outlined { color: var(--sunflower); }
+
+  .ibvr .flow-connector {
+    display: flex;
+    align-items: center;
+    color: var(--celestial);
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+    animation: vrnudge 1.8s ease-in-out infinite;
+  }
+
+  @keyframes vrnudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* ── CTA ── */
+  .ibvr .cta-block {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .ibvr .cta-lead {
+    font-family: 'Aleo', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+
+  .ibvr .cta-primary {
+    display: inline-block;
+    background: var(--celestial);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 16px 44px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(73,155,195,0.25);
+    margin-bottom: 14px;
+  }
+
+  .ibvr .cta-primary:hover {
+    background: var(--celestial-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(73,155,195,0.35);
+  }
+
+  .ibvr .cta-note {
+    font-size: 15px;
+    color: #C6D8E4;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .ibvr .how-section {
+    background: var(--prussian-mid);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 64px 48px 80px;
+  }
+
+  .ibvr .how-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .ibvr .section-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--celestial);
+    margin-bottom: 14px;
+  }
+
+  .ibvr .section-title {
+    font-family: 'Aleo', serif;
+    font-size: clamp(26px, 3.5vw, 42px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 52px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  .ibvr .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+
+  .ibvr .step-num {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--celestial);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ibvr .step-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(73,155,195,0.25);
+  }
+
+  .ibvr .step h3 {
+    font-family: 'Aleo', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .ibvr .step p {
+    font-size: 16px;
+    color: #C6D8E4;
+    line-height: 1.65;
+  }
+
+  /* ── WHAT IS IB ── */
+  .ibvr .ib-section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .ibvr .ib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .ibvr .ib-copy h2 {
+    font-family: 'Aleo', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .ibvr .ib-copy p {
+    font-size: 16px;
+    color: #C6D8E4;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .ibvr .stat-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ibvr .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(73,155,195,0.16);
+    border-radius: 10px;
+    padding: 22px 26px;
+    transition: border-color 0.2s;
+  }
+
+  .ibvr .stat-card:hover { border-color: rgba(73,155,195,0.35); }
+
+  .ibvr .stat-value {
+    font-family: 'Aleo', serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--sunflower);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .ibvr .stat-label {
+    font-size: 15px;
+    color: #C6D8E4;
+    line-height: 1.5;
+  }
+
+  /* ── CHARITY ── */
+  .ibvr .charity-section {
+    background: var(--prussian-mid);
+    border-top: 1px solid rgba(250,164,57,0.15);
+    padding: 72px 48px;
+    text-align: center;
+  }
+
+  .ibvr .charity-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .ibvr .charity-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(250,164,57,0.12);
+    margin-bottom: 24px;
+  }
+
+  .ibvr .charity-icon .material-symbols-outlined {
+    font-size: 28px;
+    color: var(--sunflower);
+  }
+
+  .ibvr .charity-section h2 {
+    font-family: 'Aleo', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: var(--sunflower);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .ibvr .charity-section p {
+    font-size: 16px;
+    color: #C6D8E4;
+    line-height: 1.7;
+  }
+
+  /* ── FINAL CTA ── */
+  .ibvr .final-cta {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 88px 48px 100px;
+    text-align: center;
+  }
+
+  .ibvr .final-cta h2 {
+    font-family: 'Aleo', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .ibvr .final-cta p {
+    font-size: 17px;
+    color: #C6D8E4;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .ibvr .vr-nav { padding: 20px 24px; }
+    .ibvr .hero { padding: 40px 24px 56px; }
+    .ibvr .vr-flow { gap: 6px; }
+    .ibvr .flow-node { padding: 12px 6px; }
+    .ibvr .flow-node-label { font-size: 11px; }
+    .ibvr .flow-connector { font-size: 18px; }
+    .ibvr .how-section { padding: 60px 24px; }
+    .ibvr .steps { grid-template-columns: 1fr; gap: 28px; }
+    .ibvr .ib-section { padding: 60px 24px; }
+    .ibvr .ib-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ibvr .charity-section { padding: 56px 24px; }
+    .ibvr .final-cta { padding: 64px 24px 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ibvr .eyebrow-dot, .ibvr .flow-connector { animation: none; }
+  }
+</style>
+
+<div class="ibvr">
+
+  <!-- HEADER (custom, logo only) -->
+  <!-- TODO: confirm the homepage href below -->
+  <nav class="vr-nav">
+    <a href="https://influenceboard.com" class="logo">
+      <img class="logo-img" src="https://influenceboard.com/wp-content/uploads/2023/05/Logo-OnDark.png" alt="Influence Board">
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      What just happened?
+    </div>
+
+    <!-- visual flow: email -> executive -> Influence Board -->
+    <div class="vr-flow-wrap">
+      <div class="vr-flow">
+        <div class="flow-node">
+          <span class="material-symbols-outlined">mail</span>
+          <span class="flow-node-label">Your email</span>
+        </div>
+        <span class="flow-connector">&rarr;</span>
+        <div class="flow-node">
+          <span class="material-symbols-outlined">person</span>
+          <span class="flow-node-label">The executive</span>
+        </div>
+        <span class="flow-connector">&rarr;</span>
+        <div class="flow-node flow-node-ib">
+          <span class="material-symbols-outlined">handshake</span>
+          <span class="flow-node-label">Influence Board</span>
+        </div>
+      </div>
+    </div>
+
+    <h1>The executive you reached out to<br>uses <em>a different process</em> for this.</h1>
+
+    <p class="hero-sub">
+      That's not a dead end. It's a better path. Influence Board helps business leaders manage vendor conversations thoughtfully, and we'd love to help you get the meeting you're looking for.
+    </p>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p class="cta-lead">Tell us who you're trying to reach.</p>
+      <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Get started</a>
+      <div class="cta-note">It only takes a minute. We'll review and follow up personally.</div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Three steps to the meeting you came here for.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Tell us who you're trying to reach</h3>
+          <p>Share who you were trying to reach and what you're bringing to the table. It only takes a minute.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>We craft your request</h3>
+          <p>We shape what you're offering into a meeting request built for the right executives, and put it in front of them the right way.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Take the meeting</h3>
+          <p>When an executive accepts, it's because they've vetted it and it fits what they're looking for. Every meeting supports a cause they care about, and you only pay when it actually happens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS IB -->
+  <section class="ib-section">
+    <div class="ib-grid">
+      <div class="ib-copy">
+        <div class="section-eyebrow">About Influence Board</div>
+        <h2>A network built for conversations that actually matter.</h2>
+        <p>Influence Board is an executive networking platform where senior business leaders take vendor and partner meetings on their own terms, in exchange for a donation to a cause they care about.</p>
+        <p>Every executive in our network has opted in. Every meeting is intentional. And every conversation you have through us reaches someone who has genuinely agreed to listen.</p>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-value">2,000+</div>
+          <div class="stat-label">Executives who take meetings through Influence Board, and growing every day</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">C-suite</div>
+          <div class="stat-label">CIOs, CFOs, CTOs, and senior decision-makers across industries</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">Fortune 500</div>
+          <div class="stat-label">Leaders from Fortune 500 companies across our network</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARITY -->
+  <section class="charity-section">
+    <div class="charity-inner">
+      <div class="charity-icon">
+        <span class="material-symbols-outlined">volunteer_activism</span>
+      </div>
+      <h2>Every meeting funds a cause.</h2>
+      <p>When an executive takes a meeting through Influence Board, a donation goes to a nonprofit of their choosing. It's how we've built a network of leaders who show up prepared, engaged, and genuinely ready to talk.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Ready to get the meeting?</h2>
+    <p>Tell us who you're trying to reach. It only takes a minute, and we'll review and follow up personally.</p>
+    <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Get started</a>
+    <div class="cta-note" style="margin-top: 16px;">
+      Questions? Reach us at <a href="mailto:team@influenceboard.com" style="color: var(--celestial); text-decoration: none;">team@influenceboard.com</a>
+    </div>
+  </section>
+
+</div><!-- /.ibvr -->
+
+<!-- Paperform popup embed (loads once; powers all "Get started" buttons above) -->
+<script>(function() { var script = document.createElement('script'); script.src = "https://paperform.co/__embed.min.js"; document.body.appendChild(script); })()</script>
+
+<!-- ============================================================= -->
+<!-- ===== END PASTE ============================================= -->
+<!-- ============================================================= -->
+
+</body>
+</html>
