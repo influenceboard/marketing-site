@@ -6,7 +6,7 @@ A home for Influence Board's marketing web pages: self-contained, brand-consiste
 
 | Page | What it is | Live |
 |------|-----------|------|
-| [vendor-redirect](./vendor-redirect) | Landing page for vendors redirected to Influence Board through the Cirrus Insight integration | _(add link once public)_ |
+| [vendor-redirect](./vendor-redirect) | Landing page for vendors redirected to Influence Board through the Cirrus Insight integration | https://influenceboard.com/new-model-for-executive-access/ |
 
 ## Conventions
 
