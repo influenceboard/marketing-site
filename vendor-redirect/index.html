@@ -29,6 +29,11 @@
     padding-top: 0 !important; padding-bottom: 0 !important;
     margin-top: 0 !important; margin-bottom: 0 !important;
   }
+  /* Paint the theme's page background navy so no white leaks around/below our
+     full-bleed block (this CSS lives on this page only, so it won't touch the rest
+     of the site). Footer keeps its own background. */
+  body.page, .site-container, .site-inner, .content-sidebar-wrap,
+  .content, .entry, .entry-content { background: #042D47 !important; }
 
   /* All .ibvr rules below are scoped so they never touch the rest of your site */
   .ibvr, .ibvr *, .ibvr *::before, .ibvr *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -140,7 +145,7 @@
   }
 
   .ibvr .hero-sub {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     color: #E7EDF1;
     max-width: 600px;
@@ -175,36 +180,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 12px;
     flex: 1;
-    max-width: 160px;
-    padding: 18px 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(73,155,195,0.18);
-    border-radius: 12px;
+    max-width: 150px;
+    padding: 4px;
+    cursor: default;
   }
 
   .ibvr .flow-node .material-symbols-outlined {
     font-size: 26px;
     color: var(--celestial);
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(73,155,195,0.10);
+    border-radius: 50%;
   }
 
   .ibvr .flow-node-label {
     font-family: 'Barlow', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: #E7EDF1;
     line-height: 1.3;
     text-align: center;
   }
 
-  .ibvr .flow-node-ib {
-    border-color: rgba(250,164,57,0.5);
-    background: rgba(250,164,57,0.08);
-  }
-
-  .ibvr .flow-node-ib .material-symbols-outlined { color: var(--sunflower); }
+  .ibvr .flow-node-ib .material-symbols-outlined { color: var(--sunflower); background: rgba(250,164,57,0.12); }
 
   .ibvr .flow-connector {
     display: flex;
@@ -241,12 +246,12 @@
     background: var(--celestial);
     color: var(--white);
     font-family: 'Barlow', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 16px 44px;
-    border-radius: 6px;
+    border-radius: 39px;
     text-decoration: none;
     cursor: pointer;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
@@ -261,7 +266,7 @@
   }
 
   .ibvr .cta-note {
-    font-size: 15px;
+    font-size: 16px;
     color: #C6D8E4;
   }
 
@@ -332,7 +337,7 @@
   }
 
   .ibvr .step p {
-    font-size: 16px;
+    font-size: 17px;
     color: #C6D8E4;
     line-height: 1.65;
   }
@@ -361,10 +366,19 @@
   }
 
   .ibvr .ib-copy p {
-    font-size: 16px;
+    font-size: 18px;
     color: #C6D8E4;
     line-height: 1.7;
     margin-bottom: 16px;
+  }
+
+  /* Avoid single-word last lines (widows) across body copy; responsive + safe */
+  .ibvr .hero-sub,
+  .ibvr .step p,
+  .ibvr .ib-copy p,
+  .ibvr .charity-section p,
+  .ibvr .final-cta p {
+    text-wrap: pretty;
   }
 
   .ibvr .stat-cards {
@@ -393,7 +407,7 @@
   }
 
   .ibvr .stat-label {
-    font-size: 15px;
+    font-size: 16px;
     color: #C6D8E4;
     line-height: 1.5;
   }
@@ -437,7 +451,7 @@
   }
 
   .ibvr .charity-section p {
-    font-size: 16px;
+    font-size: 18px;
     color: #C6D8E4;
     line-height: 1.7;
   }
@@ -460,7 +474,7 @@
   }
 
   .ibvr .final-cta p {
-    font-size: 17px;
+    font-size: 18px;
     color: #C6D8E4;
     margin-bottom: 40px;
     line-height: 1.7;
@@ -499,41 +513,35 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="eyebrow">
-      <span class="eyebrow-dot"></span>
-      What just happened?
-    </div>
-
     <!-- visual flow: email -> executive -> Influence Board -->
     <div class="vr-flow-wrap">
       <div class="vr-flow">
         <div class="flow-node">
           <span class="material-symbols-outlined">mail</span>
-          <span class="flow-node-label">Your email</span>
+          <span class="flow-node-label">You emailed an executive</span>
         </div>
         <span class="flow-connector">&rarr;</span>
         <div class="flow-node">
-          <span class="material-symbols-outlined">person</span>
-          <span class="flow-node-label">The executive</span>
+          <span class="material-symbols-outlined">forward_to_inbox</span>
+          <span class="flow-node-label">They sent you to us</span>
         </div>
         <span class="flow-connector">&rarr;</span>
         <div class="flow-node flow-node-ib">
           <span class="material-symbols-outlined">handshake</span>
-          <span class="flow-node-label">Influence Board</span>
+          <span class="flow-node-label">We help you get the meeting</span>
         </div>
       </div>
     </div>
 
-    <h1>The executive you reached out to<br>uses <em>a different process</em> for this.</h1>
+    <h1>The executive you reached out to<br>uses <em>a different process</em> for new vendor conversations.</h1>
 
     <p class="hero-sub">
-      That's not a dead end. It's a better path. Influence Board helps business leaders manage vendor conversations thoughtfully, and we'd love to help you get the meeting you're looking for.
+      Good news: this isn't a no, it's a maybe. Here's how the process works, and how to get your meeting.
     </p>
 
     <!-- CTA -->
     <div class="cta-block">
-      <p class="cta-lead">Tell us who you're trying to reach.</p>
-      <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Get started</a>
+      <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Introduce yourself</a>
       <div class="cta-note">It only takes a minute. We'll review and follow up personally.</div>
     </div>
   </section>
@@ -546,13 +554,13 @@
       <div class="steps">
         <div class="step">
           <div class="step-num">01</div>
-          <h3>Tell us who you're trying to reach</h3>
+          <h3>Introduce yourself</h3>
           <p>Share who you were trying to reach and what you're bringing to the table. It only takes a minute.</p>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <h3>We craft your request</h3>
-          <p>We shape what you're offering into a meeting request built for the right executives, and put it in front of them the right way.</p>
+          <h3>We submit your request</h3>
+          <p>We take it from here, shaping what you're offering into a strong request and submitting it to the right executives on your behalf.</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
@@ -568,22 +576,18 @@
     <div class="ib-grid">
       <div class="ib-copy">
         <div class="section-eyebrow">About Influence Board</div>
-        <h2>A network built for conversations that actually matter.</h2>
-        <p>Influence Board is an executive networking platform where senior business leaders take vendor and partner meetings on their own terms, in exchange for a donation to a cause they care about.</p>
+        <h2>Built for conversations that actually matter.</h2>
+        <p>Influence Board is where senior business leaders set the terms for the vendor conversations they take, and every meeting funds a cause they care about.</p>
         <p>Every executive in our network has opted in. Every meeting is intentional. And every conversation you have through us reaches someone who has genuinely agreed to listen.</p>
       </div>
       <div class="stat-cards">
         <div class="stat-card">
           <div class="stat-value">2,000+</div>
-          <div class="stat-label">Executives who take meetings through Influence Board, and growing every day</div>
+          <div class="stat-label">Executives who prioritize meetings through Influence Board, and growing every day</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">C-suite</div>
           <div class="stat-label">CIOs, CFOs, CTOs, and senior decision-makers across industries</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">Fortune 500</div>
-          <div class="stat-label">Leaders from Fortune 500 companies across our network</div>
         </div>
       </div>
     </div>
@@ -603,10 +607,10 @@
   <!-- FINAL CTA -->
   <section class="final-cta">
     <h2>Ready to get the meeting?</h2>
-    <p>Tell us who you're trying to reach. It only takes a minute, and we'll review and follow up personally.</p>
-    <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Get started</a>
+    <p>It only takes a minute, and we'll review and follow up personally.</p>
+    <a class="cta-primary" data-paperform-id="new-model-for-executive-access" data-popup-button="1">Introduce yourself</a>
     <div class="cta-note" style="margin-top: 16px;">
-      Questions? Reach us at <a href="mailto:team@influenceboard.com" style="color: var(--celestial); text-decoration: none;">team@influenceboard.com</a>
+      Questions? Reach us at <a href="mailto:crystal@influenceboard.com" style="color: var(--celestial); text-decoration: none;">crystal@influenceboard.com</a>
     </div>
   </section>
 
