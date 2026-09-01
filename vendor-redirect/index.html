@@ -25,6 +25,11 @@
      remains, the theme uses a different class name and we'll adjust it. ---- */
   .site-header, .nav-primary, .title-area, .header-widget-area,
   .entry-header, .entry-title, .page-header, .archive-title { display: none !important; }
+  /* Mobile-menu plugin (cssmobmenu / "mobmenu") injects its OWN header bar + slide-out
+     panel that only appears at mobile widths — a second header on phones. Hide its whole
+     footprint on this page so our custom .vr-nav is the only header at every screen size. */
+  .mob-menu-header-holder, .mobmenu-overlay, .mobmenu-panel,
+  .mobmenur-container, .mob-menu-right-bg-holder { display: none !important; }
   .site-inner, .content-sidebar-wrap, .content, .entry, .entry-content {
     padding-top: 0 !important; padding-bottom: 0 !important;
     margin-top: 0 !important; margin-bottom: 0 !important;
@@ -267,6 +272,7 @@
 
   .ibvr .cta-note {
     font-size: 16px;
+    font-weight: 500;
     color: #C6D8E4;
   }
 
@@ -372,13 +378,15 @@
     margin-bottom: 16px;
   }
 
-  /* Avoid single-word last lines (widows) across body copy; responsive + safe */
+  /* Avoid single-word last lines (widows) across body copy; responsive + safe.
+     Also bump body copy to medium weight so the dim secondary text reads clearly. */
   .ibvr .hero-sub,
   .ibvr .step p,
   .ibvr .ib-copy p,
   .ibvr .charity-section p,
   .ibvr .final-cta p {
     text-wrap: pretty;
+    font-weight: 500;
   }
 
   .ibvr .stat-cards {
@@ -408,6 +416,7 @@
 
   .ibvr .stat-label {
     font-size: 16px;
+    font-weight: 500;
     color: #C6D8E4;
     line-height: 1.5;
   }
@@ -466,8 +475,8 @@
 
   .ibvr .final-cta h2 {
     font-family: 'Aleo', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 800;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
     color: var(--white);
     margin-bottom: 20px;
     line-height: 1.15;
