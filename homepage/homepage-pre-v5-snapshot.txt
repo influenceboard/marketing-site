@@ -1,0 +1,394 @@
+<!-- ==========================================================================
+     Influence Board — HOMEPAGE, pre-v5 snapshot
+     Captured: 2026-09-08  |  WordPress page ID 582  |  influenceboard.com/
+     Source: Gutenberg Code editor view (⋮ → Code editor), copied verbatim.
+
+     WHAT THIS IS
+     The complete block markup of the homepage as it existed immediately
+     before the v5 single-Custom-HTML-block replacement. This is the
+     rollback source of record.
+
+     TO RESTORE
+     Open page 582 → ⋮ → Code editor → select all → paste everything below
+     the end of this comment → Update. Then clear the WP Engine cache.
+
+     DEPENDENCIES THIS MARKUP RELIES ON — restoring the markup alone is not
+     enough if any of these have been removed in the meantime:
+       - Synced patterns (reusable blocks): ref 3119, ref 2494
+       - MetaSlider slideshows: id 2669 (Worthy Causes), id 1369 (Testimonials)
+       - Genesis Custom Blocks plugin (provides colored-stats-block)
+       - Genesis Blocks / Genesis Page Builder plugin
+       - Customizer Additional CSS: the /** FRONT / HOME **/ section,
+         all .home-page-* rules. Do not delete that CSS while this
+         snapshot is still the rollback target.
+       - Calendly external widget (inline in the wp:html block below)
+       - In-page anchor: #leaderboard
+     ========================================================================== -->
+
+<!-- wp:genesis-blocks/gb-columns {"columns":2,"layout":"gb-2-col-wideleft","align":"full","marginUnit":"em","paddingRight":10,"paddingLeft":10,"paddingUnit":"%","customTextColor":"#1f1f1f","backgroundColor":"white","columnMaxWidth":1200,"className":"gpb-altitude-section-text-image-columns home-page-secure-meetings-main"} -->
+<div class="wp-block-genesis-blocks-gb-columns gpb-altitude-section-text-image-columns home-page-secure-meetings-main gb-layout-columns-2 gb-2-col-wideleft has-white-background-color gb-has-custom-text-color gb-columns-center alignfull" style="padding-right:10%;padding-left:10%;color:#1f1f1f"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1200px"><!-- wp:genesis-blocks/gb-column {"paddingUnit":"em","className":"interior-page-cta-left-col"} -->
+<div class="wp-block-genesis-blocks-gb-column interior-page-cta-left-col gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnMaxWidth":980,"className":"home-page-secure-meetings-left"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-secure-meetings-left gb-layout-columns-1 one-column gb-columns-center"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:980px"><!-- wp:genesis-blocks/gb-column {"lock":{"move":true,"remove":true}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:spacer {"height":"15px"} -->
+<div style="height:15px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:heading {"className":"home-page-cta-header","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading home-page-cta-header">Secure conversations<br>with hard-to-reach<br>Business Influencers<br>by <span class="text-color-tangerine">donating to their<br>worthy causes.</span></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"home-page-paragraph","gbResponsiveSettings":{"600px":[]}} -->
+<p class="home-page-paragraph">Conversations with a foundation of mutual value, shared transparency, and respect for everyone’s time. Open Doors Faster. Build Relationships That Last.</p>
+<!-- /wp:paragraph -->
+<!-- wp:spacer {"height":"20px"} -->
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:html -->
+<!-- Calendly link widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<style>
+  /* Ensure Calendly popup is on top of everything, including the menubar on mobile. */
+  .calendly-overlay,
+  .calendly-popup-content {
+    z-index: 9999999 !important; /* Very high z-index */
+  }
+</style>
+<!-- Combined Calendly and WordPress Button -->
+<div class="wp-block-buttons home-page-main-buttons is-layout-flex wp-block-buttons-is-layout-flex">
+  <div class="wp-block-button secondary-cta-button">
+    <a
+      class="wp-block-button__link wp-element-button"
+      href="#"
+      onclick="Calendly.initPopupWidget({url: 'https://calendly.com/influenceboard/15min'});return false;">
+      Book A Call
+    </a>
+  </div>
+  <!-- Calendly link widget end -->
+  <div class="wp-block-button primary-cta-button">
+    <a class="wp-block-button__link wp-element-button" href="https://app.influenceboard.com/#!/signup" target="_blank" rel="noreferrer noopener">Get started</a
+    >
+  </div>
+</div>
+<!-- /wp:html --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"marginUnit":"em","marginTop":1,"columnVerticalAlignment":"top","lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column gb-is-vertically-aligned-top"><div class="gb-block-layout-column-inner" style="margin-top:1em"><!-- wp:image {"id":5483,"width":"365px","height":"auto","sizeSlug":"full","linkDestination":"none","align":"left"} -->
+<figure class="wp-block-image alignleft size-full is-resized"><img src="https://influenceboard.com/wp-content/uploads/2024/01/InfluenceBoard-ConversationGraphic.png" alt="" class="wp-image-5483" style="width:365px;height:auto"/></figure>
+<!-- /wp:image --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","marginTop":2,"marginUnit":"em","paddingRight":2,"paddingLeft":2,"paddingUnit":"em","columnMaxWidth":1200,"className":"home-page-secure-meetings-byline"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-secure-meetings-byline gb-layout-columns-1 one-column gb-columns-center alignfull" style="margin-top:2em;padding-right:2em;padding-left:2em"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1200px"><!-- wp:genesis-blocks/gb-column {"marginUnit":"em","paddingUnit":"%","lock":{"move":false,"remove":false},"className":"home-secure-meetings"} -->
+<div class="wp-block-genesis-blocks-gb-column home-secure-meetings gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:paragraph {"className":"home-page-paragraph text-color-navy-blue","gbResponsiveSettings":{"600px":{"fontSize":"1.3rem"}}} -->
+<p class="home-page-paragraph text-color-navy-blue">We work with industry-leading Business Influencers from <strong>top-tier corporations.</strong></p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingBottom":2,"customBackgroundColor":"#042d47"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-has-custom-background-color alignfull" style="padding-bottom:2px;background-color:#042d47"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"marginUnit":"%","paddingUnit":"%","paddingRight":3,"paddingLeft":3,"lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner" style="padding-right:3%;padding-left:3%"><!-- wp:image {"id":5635,"sizeSlug":"full","linkDestination":"none","align":"full","className":"no-margin"} -->
+<figure class="wp-block-image alignfull size-full no-margin"><img src="https://influenceboard.com/wp-content/uploads/2024/04/Logo-Bar-InfluenceBoard-1.png" alt="" class="wp-image-5635"/></figure>
+<!-- /wp:image --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:image {"id":5646,"sizeSlug":"full","linkDestination":"none","align":"full"} -->
+<figure class="wp-block-image alignfull size-full"><img src="https://influenceboard.com/wp-content/uploads/2024/04/Influence-Board-Handshake-Home.jpg" alt="" class="wp-image-5646"/></figure>
+<!-- /wp:image -->
+<!-- wp:spacer {"height":"65px"} -->
+<div style="height:65px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":15,"paddingLeft":15,"paddingUnit":"%","columnMaxWidth":1200,"className":"home-page-changing-corporate"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-changing-corporate gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:15%;padding-left:15%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1200px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnMaxWidth":0,"centerColumns":false} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"textAlign":"left","className":"interior-page-header","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading has-text-align-left interior-page-header"><strong>We’re changing corporate culture, one conversation at a time.</strong></h2>
+<!-- /wp:heading --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:paragraph {"className":"home-page-paragraph","style":{"typography":{"fontStyle":"normal","fontWeight":"500"},"color":{"text":"#676164"}}} -->
+<p class="home-page-paragraph has-text-color" style="color:#676164;font-style:normal;font-weight:500">The only "cold outreach" sales process that is both designed and endorsed by the very business leaders you're trying to connect with, allowing you to establish credibility and stand out from the competition.</p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer {"height":"4vw"} -->
+<div style="height:4vw" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":3,"layout":"gb-3-col-equal","columnsGap":3,"align":"full","paddingRight":15,"paddingLeft":15,"paddingUnit":"%","columnMaxWidth":1200,"className":"colored-stat-boxes"} -->
+<div class="wp-block-genesis-blocks-gb-columns colored-stat-boxes gb-layout-columns-3 gb-3-col-equal gb-columns-center alignfull" style="padding-right:15%;padding-left:15%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-3 gb-is-responsive-column" style="max-width:1200px"><!-- wp:genesis-blocks/gb-column {"textAlign":"center","columnVerticalAlignment":"top","lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column gb-is-vertically-aligned-top"><div class="gb-block-layout-column-inner" style="text-align:center"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnMaxWidth":800} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:800px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-custom-blocks/colored-stats-block {"text-color":"#F15F3E","top-text-2-font-size":"4.2rem","top-text-2-font-weight":"700","bottom-text-1-font-size":"1.8rem","bottom-text-1-font-weight":"700","bottom-text-2-font-size":"1.8rem","bottom-text-2-font-weight":"700","top-text-1":"","top-text-2":"20-40%","bottom-text-1":"Acceptance","bottom-text-2":"Rate"} /--></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"lock":{"move":false,"remove":false},"className":"home-page-stat-box-middle"} -->
+<div class="wp-block-genesis-blocks-gb-column home-page-stat-box-middle gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnMaxWidth":800} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:800px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-custom-blocks/colored-stats-block {"text-color":"#7aaf10","top-text-1-font-size":"3.8rem","top-text-1-font-weight":"700","top-text-2-font-size":"2.2rem","top-text-2-font-weight":"700","bottom-text-1-font-size":"1.45rem","bottom-text-1-font-weight":"700","bottom-text-2-font-size":"1.45rem","bottom-text-2-font-weight":"700","top-text-1":"10X","top-text-2":"  ","bottom-text-1":"More Access","bottom-text-2":"Than Cold Outreach","className":"home-page-stat-box-middle"} /--></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnMaxWidth":800} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:800px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-custom-blocks/colored-stats-block {"text-color":"#499BC3","top-text-1-font-size":"","top-text-1-font-weight":"","top-text-2-font-size":"4.2rem","top-text-2-font-weight":"700","bottom-text-1-font-size":"1.8rem","bottom-text-1-font-weight":"700","bottom-text-2-font-size":"1.8rem","bottom-text-2-font-weight":"700","top-text-1":"","top-text-2":"10,000+","bottom-text-1":"Companies Trust","bottom-text-2":"Our Platform"} /--></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer {"height":"4vw"} -->
+<div style="height:4vw" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:block {"ref":3119} /-->
+<!-- wp:spacer {"height":"4vh"} -->
+<div style="height:4vh" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":3,"paddingLeft":3,"paddingUnit":"%","columnMaxWidth":1000,"className":"home-page-positive-impact"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-positive-impact gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:3%;padding-left:3%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1000px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":2,"layout":"gb-2-col-wideright","paddingUnit":"%"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-2 gb-2-col-wideright"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"className":"home-page-positive-impact-left-col"} -->
+<div class="wp-block-genesis-blocks-gb-column home-page-positive-impact-left-col gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:image {"id":4088,"sizeSlug":"full","linkDestination":"none","align":"left","className":"home-page-positive-impact-image"} -->
+<figure class="wp-block-image alignleft size-full home-page-positive-impact-image"><img src="https://influenceboard.com/wp-content/uploads/2023/06/positive-impact-profile.png" alt="" class="wp-image-4088" title=""/></figure>
+<!-- /wp:image --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"paddingUnit":"%","className":"home-page-positive-impact-right-col"} -->
+<div class="wp-block-genesis-blocks-gb-column home-page-positive-impact-right-col gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"align":"full","className":"home-page-positive-impact-header","style":{"typography":{"lineHeight":"1.2"}},"gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading alignfull home-page-positive-impact-header" style="line-height:1.2">Make a Positive Impact on the World with Your Time.</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"home-page-positive-impact-paragraph white-text-link","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<p class="home-page-positive-impact-paragraph white-text-link">As a Business Influencer, you’ll accept only relevant conversations from purpose-driven professionals while raising funds for a cause you’re passionate about.  <a href="https://influenceboard.com/business-influencer" title="">Learn More...</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:buttons {"className":"home-page-positive-impact-button-wrapper","layout":{"type":"flex","justifyContent":"right"}} -->
+<div class="wp-block-buttons home-page-positive-impact-button-wrapper"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"></a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+<!-- wp:spacer {"height":"3em"} -->
+<div style="height:3em" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer {"height":"32px"} -->
+<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":13,"paddingLeft":3,"paddingUnit":"%","columnMaxWidth":1000,"className":"home-page-unlock-meetings"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-unlock-meetings gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:13%;padding-left:3%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1000px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":2,"layout":"gb-2-col-wideleft","paddingUnit":"%"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-2 gb-2-col-wideleft"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"className":"home-page-unlock-meetings-left-col"} -->
+<div class="wp-block-genesis-blocks-gb-column home-page-unlock-meetings-left-col gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"align":"full","className":"home-page-unlock-meetings-header","style":{"typography":{"lineHeight":"1.2"}},"gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading alignfull home-page-unlock-meetings-header" style="line-height:1.2">Unlock Conversations with Influential Business Leaders.</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"home-page-unlock-meetings-paragraph white-text-link","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<p class="home-page-unlock-meetings-paragraph white-text-link">As a Meeting Requester, you can quickly land productive introductions with sought-after Business Influencers — by donating to the worthy causes they’re championing.  <a href="https://influenceboard.com/meeting-requester" title="">Learn More...</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:spacer {"height":"3em"} -->
+<div style="height:3em" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"paddingUnit":"%","className":"home-page-unlock-meetings-right-col"} -->
+<div class="wp-block-genesis-blocks-gb-column home-page-unlock-meetings-right-col gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:image {"id":4341,"sizeSlug":"full","linkDestination":"none","align":"right","className":"home-page-unlock-meetings-image"} -->
+<figure class="wp-block-image alignright size-full home-page-unlock-meetings-image"><img src="https://influenceboard.com/wp-content/uploads/2023/06/unlock-meetings-profile.png" alt="" class="wp-image-4341" title=""/></figure>
+<!-- /wp:image --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer {"height":"5rem"} -->
+<div style="height:5rem" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:heading {"textAlign":"center","align":"full","className":"interior-page-header","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading alignfull has-text-align-center interior-page-header"><strong>Worthy Causes Served</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:spacer {"height":"2rem"} -->
+<div style="height:2rem" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":5,"paddingLeft":5,"paddingUnit":"%","columnMaxWidth":950,"className":"home-page-worthy-causes-slider"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-worthy-causes-slider gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:5%;padding-left:5%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:950px"><!-- wp:genesis-blocks/gb-column {"textAlign":"left","paddingUnit":"%","lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner" style="text-align:left"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnsGap":0,"align":"full","paddingUnit":"em"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column alignfull"><div class="gb-layout-column-wrap gb-block-layout-column-gap-0 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"textAlign":"center"} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner" style="text-align:center"><!-- wp:metaslider/slider {"slideshowId":2669} -->
+<div class="alignnormal">[metaslider id="2669"]</div>
+<!-- /wp:metaslider/slider --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:buttons {"className":"home-page-see-all-causes-button","layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons home-page-see-all-causes-button"><!-- wp:button {"textAlign":"center","className":"secondary-cta-button"} -->
+<div class="wp-block-button secondary-cta-button"><a class="wp-block-button__link has-text-align-center wp-element-button" href="https://influenceboard.com/social-impact/">Learn More</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+<!-- wp:spacer {"height":"136px"} -->
+<div style="height:136px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","columnsGap":0,"align":"full","paddingTop":10,"paddingRight":25,"paddingBottom":10,"paddingLeft":25,"paddingUnit":"%","textColor":"white","customBackgroundColor":"#042d47","columnMaxWidth":550,"className":"home-page-meetingful"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-meetingful gb-layout-columns-1 one-column gb-has-custom-background-color has-white-color gb-columns-center alignfull" style="padding-top:10%;padding-right:25%;padding-bottom:10%;padding-left:25%;background-color:#042d47"><div class="gb-layout-column-wrap gb-block-layout-column-gap-0 gb-is-responsive-column" style="max-width:550px"><!-- wp:genesis-blocks/gb-column {"textAlign":"center","paddingUnit":"%","lock":{"move":false,"remove":false}} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner" style="text-align:center"><!-- wp:heading {"textAlign":"center","className":"front-page-quote-header","textColor":"white","gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading has-text-align-center front-page-quote-header has-white-color has-text-color">With Influence Board, every conversation is <span class="text-color-tangerine">impactful.</span></h2>
+<!-- /wp:heading --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:spacer {"height":"8vw"} -->
+<div style="height:8vw" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:media-text {"align":"wide","mediaId":1262,"mediaLink":"https://influenceboard.com/home/front-page-meeting-requesters/","mediaType":"image","mediaWidth":47,"imageFill":false,"className":"home-page-meeting-requesters"} -->
+<div class="wp-block-media-text alignwide is-stacked-on-mobile home-page-meeting-requesters" style="grid-template-columns:47% auto"><figure class="wp-block-media-text__media"><img src="https://influenceboard.com/wp-content/uploads/2023/06/front-page-meeting-requesters-1024x820.png" alt="" class="wp-image-1262 size-full"/></figure><div class="wp-block-media-text__content"><!-- wp:spacer {"height":"2vh"} -->
+<div style="height:2vh" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:heading {"textAlign":"left","className":"home-page-header"} -->
+<h2 class="wp-block-heading has-text-align-left home-page-header"><strong>Meeting Requesters</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"placeholder":"Content…","className":"home-page-paragraph"} -->
+<p class="home-page-paragraph">Join a platform that facilitates predictable, productive conversations with an ever-expanding pool of influential executives.</p>
+<!-- /wp:paragraph -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"secondary-cta-button"} -->
+<div class="wp-block-button secondary-cta-button"><a class="wp-block-button__link wp-element-button" href="https://influenceboard.com/how-it-works/meeting-requester/">Learn more</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div></div>
+<!-- /wp:media-text -->
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","marginUnit":"em","paddingTop":5,"paddingBottom":5,"paddingUnit":"em","customBackgroundColor":"#f5f5f5"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-has-custom-background-color alignfull" style="padding-top:5em;padding-bottom:5em;background-color:#f5f5f5"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:media-text {"align":"wide","mediaPosition":"right","mediaId":1265,"mediaLink":"https://influenceboard.com/home/front-page-business-influencers/","mediaType":"image","mediaWidth":48} -->
+<div class="wp-block-media-text alignwide has-media-on-the-right is-stacked-on-mobile" style="grid-template-columns:auto 48%"><div class="wp-block-media-text__content"><!-- wp:spacer {"height":"2vh"} -->
+<div style="height:2vh" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:heading {"textAlign":"left","className":"home-page-header"} -->
+<h2 class="wp-block-heading has-text-align-left home-page-header"><strong>Business Influencers</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"home-page-paragraph"} -->
+<p class="home-page-paragraph">Take control of unsolicited conversation requests, getting exposure to a manageable number of filtered, relevant conversations and a social impact with each accepted request.</p>
+<!-- /wp:paragraph -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"secondary-cta-button"} -->
+<div class="wp-block-button secondary-cta-button"><a class="wp-block-button__link wp-element-button" href="https://influenceboard.com/how-it-works/business-influencer/">Learn more</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div><figure class="wp-block-media-text__media"><img src="https://influenceboard.com/wp-content/uploads/2023/06/front-page-business-influencers-1024x768.png" alt="" class="wp-image-1265 size-full"/></figure></div>
+<!-- /wp:media-text --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:html -->
+<a id="leaderboard"></a>
+<!-- /wp:html -->
+<!-- wp:genesis-blocks/gb-columns {"backgroundImgURL":"https://influenceboard.com/wp-content/uploads/2023/06/profile-bg-navy.png","backgroundRepeat":"repeat-x","backgroundSize":"auto","focalPoint":{"x":0,"y":0},"columns":1,"layout":"one-column","align":"full","paddingTop":6,"paddingRight":1,"paddingLeft":1,"paddingUnit":"em","customTextColor":"#1f1f1f","columnMaxWidth":1200,"className":"home-page-big-impacts gpb-altitude-section-team-members gb-layout-team-1 "} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-big-impacts gpb-altitude-section-team-members gb-layout-team-1 gb-layout-columns-1 one-column gb-background-repeat-x gb-has-custom-text-color gb-columns-center alignfull" style="padding-top:6em;padding-right:1em;padding-left:1em;color:#1f1f1f;background-image:url(https://influenceboard.com/wp-content/uploads/2023/06/profile-bg-navy.png);background-position:0% 0%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:1200px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"textAlign":"center","className":"font-aleo","style":{"typography":{"fontSize":"4em"}},"textColor":"white","gbResponsiveSettings":{"1200px":{"fontSize":"2.5em"},"600px":{"fontSize":"2em"}}} -->
+<h2 class="wp-block-heading has-text-align-center font-aleo has-white-color has-text-color" style="font-size:4em"> <strong>Making Big Impacts</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"align":"center","className":"font-barlow","style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"700","letterSpacing":"6px"}},"textColor":"white"} -->
+<p class="has-text-align-center font-barlow has-white-color has-text-color" style="font-style:normal;font-weight:700;letter-spacing:6px;text-transform:uppercase">Business Influencer Leaderboard</p>
+<!-- /wp:paragraph -->
+<!-- wp:spacer {"height":"2vw"} -->
+<div style="height:2vw" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+<!-- wp:genesis-blocks/gb-columns {"columns":3,"layout":"gb-3-col-equal","paddingUnit":"em","className":"home-page-big-impacts-profiles"} -->
+<div class="wp-block-genesis-blocks-gb-columns home-page-big-impacts-profiles gb-layout-columns-3 gb-3-col-equal"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"marginUnit":"em","marginBottom":2} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner" style="margin-bottom:2em"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","marginBottom":4,"marginUnit":"em","paddingUnit":"%"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column" style="margin-bottom:4em"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"paddingUnit":"em"} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:image {"id":5855,"sizeSlug":"full","linkDestination":"none","align":"center","className":"home-page-big-impacts-profile-pic is-style-default"} -->
+<figure class="wp-block-image aligncenter size-full home-page-big-impacts-profile-pic is-style-default"><img src="https://influenceboard.com/wp-content/uploads/2024/11/Andrew-Moore-CIO-Colorado-School-of-Mines-Influence-Board.png" alt="" class="wp-image-5855"/></figure>
+<!-- /wp:image -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":10,"paddingLeft":20,"paddingUnit":"%","columnMaxWidth":319} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:10%;padding-left:20%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:319px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"textAlign":"left","className":"home-page-big-impacts-profile-header font-aleo","style":{"typography":{"fontSize":"2em","fontStyle":"normal","fontWeight":"700"},"color":{"text":"#042d47"}},"gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading has-text-align-left home-page-big-impacts-profile-header font-aleo has-text-color" style="color:#042d47;font-size:2em;font-style:normal;font-weight:700">This Month</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#042d47"}}} -->
+<p class="has-text-color" style="color:#042d47;font-style:normal;font-weight:400"><strong>Andrew Moore</strong></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"font-barlow","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#898989"}}} -->
+<p class="font-barlow has-text-color" style="color:#898989;font-style:normal;font-weight:400">CIO, Colorado School of Mines</p>
+<!-- /wp:paragraph -->
+<!-- wp:separator {"className":"is-style-wide big-impacts-separator"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide big-impacts-separator"/>
+<!-- /wp:separator -->
+<!-- wp:heading {"className":"font-aleo","style":{"color":{"text":"#499bc3"},"typography":{"fontStyle":"normal","fontWeight":"700","fontSize":"2em"}}} -->
+<h2 class="wp-block-heading font-aleo has-text-color" style="color:#499bc3;font-size:2em;font-style:normal;font-weight:700">$450</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><strong>Raised for:<br></strong>Resource Center</p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column {"marginUnit":"em","marginBottom":2,"className":"big-impacts-middle-col"} -->
+<div class="wp-block-genesis-blocks-gb-column big-impacts-middle-col gb-block-layout-column"><div class="gb-block-layout-column-inner" style="margin-bottom:2em"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","marginBottom":2,"marginUnit":"em","paddingUnit":"%"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column" style="margin-bottom:2em"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"paddingUnit":"em"} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:image {"id":5857,"sizeSlug":"full","linkDestination":"none","align":"center","className":"home-page-big-impacts-profile-pic is-style-default"} -->
+<figure class="wp-block-image aligncenter size-full home-page-big-impacts-profile-pic is-style-default"><img src="https://influenceboard.com/wp-content/uploads/2024/11/James-Neve-CRO-FIS-Influence-Board.png" alt="" class="wp-image-5857"/></figure>
+<!-- /wp:image -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":10,"paddingLeft":20,"paddingUnit":"%","columnMaxWidth":319} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:10%;padding-left:20%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:319px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"textAlign":"left","className":"home-page-big-impacts-profile-header font-aleo","style":{"typography":{"fontSize":"2em","fontStyle":"normal","fontWeight":"700"},"color":{"text":"#042d47"}},"gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading has-text-align-left home-page-big-impacts-profile-header font-aleo has-text-color" style="color:#042d47;font-size:2em;font-style:normal;font-weight:700">This Quarter</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#042d47"}}} -->
+<p class="has-text-color" style="color:#042d47;font-style:normal;font-weight:400"><strong>James Neve</strong></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"font-barlow","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#898989"}}} -->
+<p class="font-barlow has-text-color" style="color:#898989;font-style:normal;font-weight:400">CRO, FIS</p>
+<!-- /wp:paragraph -->
+<!-- wp:separator {"className":"is-style-wide big-impacts-separator"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide big-impacts-separator"/>
+<!-- /wp:separator -->
+<!-- wp:heading {"className":"font-aleo","style":{"color":{"text":"#499bc3"},"typography":{"fontStyle":"normal","fontWeight":"700","fontSize":"2em"}}} -->
+<h2 class="wp-block-heading font-aleo has-text-color" style="color:#499bc3;font-size:2em;font-style:normal;font-weight:700">$1,000</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><strong>Raised for:<br></strong>Sandy Hook Promise</p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column -->
+<!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","marginBottom":2,"marginUnit":"em","paddingUnit":"%"} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column" style="margin-bottom:2em"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column"><!-- wp:genesis-blocks/gb-column {"paddingUnit":"em"} -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:image {"id":5858,"sizeSlug":"full","linkDestination":"none","align":"center","className":"home-page-big-impacts-profile-pic is-style-default"} -->
+<figure class="wp-block-image aligncenter size-full home-page-big-impacts-profile-pic is-style-default"><img src="https://influenceboard.com/wp-content/uploads/2024/11/Matt-Schwartz-CTO-Sage-Hospitality-Influence-Board.png" alt="" class="wp-image-5858"/></figure>
+<!-- /wp:image -->
+<!-- wp:genesis-blocks/gb-columns {"columns":1,"layout":"one-column","align":"full","paddingRight":10,"paddingLeft":20,"paddingUnit":"%","columnMaxWidth":319} -->
+<div class="wp-block-genesis-blocks-gb-columns gb-layout-columns-1 one-column gb-columns-center alignfull" style="padding-right:10%;padding-left:20%"><div class="gb-layout-column-wrap gb-block-layout-column-gap-2 gb-is-responsive-column" style="max-width:319px"><!-- wp:genesis-blocks/gb-column -->
+<div class="wp-block-genesis-blocks-gb-column gb-block-layout-column"><div class="gb-block-layout-column-inner"><!-- wp:heading {"textAlign":"left","className":"home-page-big-impacts-profile-header font-aleo","style":{"typography":{"fontSize":"2em","fontStyle":"normal","fontWeight":"700"},"color":{"text":"#042d47"}},"gbResponsiveSettings":{"1200px":[],"600px":[]}} -->
+<h2 class="wp-block-heading has-text-align-left home-page-big-impacts-profile-header font-aleo has-text-color" style="color:#042d47;font-size:2em;font-style:normal;font-weight:700">Year to Date</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#042d47"}}} -->
+<p class="has-text-color" style="color:#042d47;font-style:normal;font-weight:400"><strong>Matt Schwartz</strong></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"font-barlow","style":{"typography":{"fontStyle":"normal","fontWeight":"400"},"color":{"text":"#898989"}}} -->
+<p class="font-barlow has-text-color" style="color:#898989;font-style:normal;font-weight:400">CTO, Sage Hospitality</p>
+<!-- /wp:paragraph -->
+<!-- wp:separator {"className":"is-style-wide big-impacts-separator"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide big-impacts-separator"/>
+<!-- /wp:separator -->
+<!-- wp:heading {"className":"font-aleo","style":{"color":{"text":"#499bc3"},"typography":{"fontStyle":"normal","fontWeight":"700","fontSize":"2em"}}} -->
+<h2 class="wp-block-heading font-aleo has-text-color" style="color:#499bc3;font-size:2em;font-style:normal;font-weight:700">$2,500</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><strong>Raised for:<br></strong>Teach for America - Colorado</p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns --></div></div>
+<!-- /wp:genesis-blocks/gb-column --></div></div>
+<!-- /wp:genesis-blocks/gb-columns -->
+<!-- wp:metaslider/slider {"slideshowId":1369,"stretch":"full","containerClass":"home-page-testimonial-slider"} -->
+<div class="alignfull">[metaslider id=1369 cssclass="home-page-testimonial-slider"]</div>
+<!-- /wp:metaslider/slider -->
+<!-- wp:block {"ref":2494} /-->
