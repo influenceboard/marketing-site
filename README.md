@@ -8,6 +8,7 @@ A home for Influence Board's marketing web pages: self-contained, brand-consiste
 |------|-----------|------|
 | [homepage](./homepage) | Executive-first homepage. Single Custom HTML block on page 582. | https://influenceboard.com/ |
 | [vendor-redirect](./vendor-redirect) | Landing page for vendors redirected to Influence Board through the Cirrus Insight integration | https://influenceboard.com/new-model-for-executive-access/ |
+| [candidate-portal](./candidate-portal) | Landing page for executives invited to join. Single Custom HTML block on page 5879. | https://influenceboard.com/candidate-portal/ |
 
 ## Conventions
 
