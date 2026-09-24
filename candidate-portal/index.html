@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Influence Board | Candidate Portal</title>
+<meta name="description" content="Executives set the terms. Vendors donate to a cause the executive chooses. Fewer meetings, better meetings, impact in every one.">
+<style>
+  /* ------------------------------------------------------------------
+     STAND-IN ONLY. Not part of the WordPress Custom HTML block.
+     Live, the Genesis / Altitude Pro theme supplies the html/body reset,
+     the fixed site header, the nav and the footer. This block exists so
+     the file renders standalone for preview and diffing.
+     ------------------------------------------------------------------ */
+  html, body { margin: 0; padding: 0; }
+  body { background: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PASTE-INTO-WORDPRESS: START
+     Everything between this marker and the END marker is what goes
+     into the WordPress Custom HTML block on the candidate-portal page
+     (influenceboard.com/candidate-portal/). Do not include the
+     <html>/<head>/<body> wrapper above or below it.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,300;0,400;0,700;0,800;1,400&family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Influence Board candidate portal (GrowEasy executive landing), v20
+   (v20, 9/24: the scripts no longer use the double-ampersand "and" operator.
+   WordPress rewrites every ampersand inside anything it reads as an HTML tag,
+   and a less-than comparison in a script reads as the start of one. On the
+   first paste that broke the FAQ script, so the FAQ showed its no-script
+   fallback. Keep the three scripts free of ampersands: use a ? b : c or
+   nested ifs instead.
+   v19, 9/24: tablet and phone layout fixes only, no copy changes. How it
+   works shows two cards plus a full-width third on tablets, the impact
+   stats show one wide plus two on small tablets, the peer cards go 2 x 2
+   below 1121px, and the phone logo strip runs edge to edge and fades at the
+   right so it reads as swipeable. v18: a GrowEasy hero: "A new category of board" label, the join-2,000+
+   headline, three checkmarks and the video on the right, with the logo
+   strip captioned "Members include leaders at companies like these.";
+   the board comparison as one navy strip with a full row for the board
+   seat; the FAQ right after How it works as a question list with an
+   answer panel, answers rewritten 9/24; eyebrows at 16px, up from the
+   homepage's 14px)
+   Built from the homepage build (page ID 582): same tokens, components,
+   guards and theme integration.
+   COPY RULE: every section this page shares with the homepage uses the
+   homepage's words verbatim. Portal-only: the hero copy and logo-strip
+   caption, the "It started with executives" eyebrow (the homepage's "Who
+   set the rules" is the headline here), the board comparison, the video
+   and the FAQ.
+   Left off on purpose: the vendor section and the time-value calculator.
+   The one link to the requester side is in FAQ 9. Everything is scoped to
+   .ibcp except the theme-integration block at the bottom, which only
+   exists on this page.
+   ============================================================ */
+
+.ibcp { font-family: 'Barlow', system-ui, sans-serif; color: #424242; background: #FFFFFF; -webkit-text-size-adjust: 100%; }
+.ibcp *, .ibcp *::before, .ibcp *::after { box-sizing: border-box; }
+.ibcp h1, .ibcp h2, .ibcp h3, .ibcp p, .ibcp ul, .ibcp ol { margin: 0; }
+.ibcp p, .ibcp li, .ibcp blockquote, .ibcp figcaption, .ibcp small, .ibcp span { text-wrap: pretty; }
+.ibcp h1, .ibcp h2, .ibcp h3, .ibcp h4 { text-wrap: balance; }
+.ibcp a { color: #B0472C; }
+.ibcp a:hover { color: #042D47; }
+.ibcp :focus-visible { outline: 3px solid #499BC3; outline-offset: 3px; border-radius: 4px; }
+.ibcp [id] { scroll-margin-top: 88px; }
+.ibcp img { max-width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ibcp *, .ibcp *::before, .ibcp *::after { transition: none !important; animation: none !important; }
+}
+
+/* --- hover states (same classes as the homepage) --- */
+.ibcp .ibhv-0:hover { background:#57A8CF; }
+.ibcp .ibhv-2:hover { background:#042D47; }
+
+/* --- hero: copy on the left, the video on the right. On tablets and phones
+       the video stacks under the button instead of hiding. --- */
+.ibcp .ib-hero-grid { grid-template-columns: minmax(0,1fr) minmax(300px,460px); }
+.ibcp .ib-hero-video { align-self: center; }
+@media (max-width: 860px) { .ibcp .ib-hero-grid { grid-template-columns: minmax(0,1fr); } }
+
+/* --- peer-session cards (same as the homepage) -----------------------
+   Desktop: an auto-fitting grid. Phones: a horizontal swipe rail with
+   scroll-snap. The next card deliberately peeks past the right edge; that
+   peek is what tells someone it scrolls. */
+.ibcp .ib-peer-cards {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+/* Tablets: 2 x 2. Auto-fit left three cards on a row and one alone below
+   between about 855px and 1125px (every iPad in landscape). */
+@media (max-width: 1120px) {
+  .ibcp .ib-peer-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .ibcp .ib-peer-cards {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 18px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: -18px;
+    margin-right: -18px;
+    padding: 2px 18px;
+  }
+  .ibcp .ib-peer-cards::-webkit-scrollbar { display: none; }
+  .ibcp .ib-peer-cards > li {
+    flex: 0 0 72%;
+    scroll-snap-align: start;
+  }
+}
+
+/* --- How it works cards -------------------------------------------------
+   Desktop: three across. Tablets: the first two side by side and the third
+   full width underneath (auto-fit used to leave it alone at half width from
+   about 606px to 925px). Phones: stacked. */
+.ibcp .ib-how-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 940px) {
+  .ibcp .ib-how-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ibcp .ib-how-cards > :last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .ibcp .ib-how-cards { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- impact stats ---------------------------------------------------------
+   Three across. Small tablets and big phones sideways: the charity total
+   full width, the other two under it (auto-fit left one stat alone from
+   about 472px to 716px). Phones: stacked. */
+.ibcp .ib-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 720px) {
+  .ibcp .ib-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ibcp .ib-stats > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .ibcp .ib-stats { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- range sliders in the phone mockup --- */
+.ibcp [data-terms-range] { -webkit-appearance: none; appearance: none; width: 100%; height: 26px; background: transparent; cursor: pointer; display: block; }
+.ibcp [data-terms-range]::-webkit-slider-runnable-track { height: 8px; border-radius: 6px; background: var(--fill); }
+.ibcp [data-terms-range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; border: 2px solid var(--thumb); margin-top: -8px; box-shadow: 0 2px 6px rgba(4,45,71,.28); }
+.ibcp [data-terms-range]::-moz-range-track { height: 8px; border-radius: 6px; background: #D2D0D1; }
+.ibcp [data-terms-range]::-moz-range-progress { height: 8px; border-radius: 6px; background: var(--thumb); }
+.ibcp [data-terms-range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 2px solid var(--thumb); box-shadow: 0 2px 6px rgba(4,45,71,.28); }
+
+/* --- mobile tap targets -----------------------------------------------
+   The pill CTAs are 39px tall, under the 44px minimum both iOS and
+   Android recommend. Only raised on phones; desktop proportions stay. */
+@media (max-width: 600px) {
+  /* !important because the pill sizing lives in an inline style attribute */
+  .ibcp .ibhv-0, .ibcp .ibhv-2 { min-height: 46px !important; padding: 0 30px !important; }
+}
+
+/* --- logo ticker --- */
+@keyframes ib-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ibcp [data-ticker-mobile] { display: none; }
+.ibcp [data-ticker-track] { animation: ib-ticker-scroll 30s linear infinite; }
+.ibcp [data-ticker-desktop]:hover [data-ticker-track] { animation-play-state: paused; }
+.ibcp [data-ticker-mobile] { scrollbar-width: none; }
+.ibcp [data-ticker-mobile]::-webkit-scrollbar { display: none; }
+@media (max-width: 560px) {
+  .ibcp [data-ticker-desktop] { display: none !important; }
+  .ibcp [data-ticker-mobile] { display: flex !important; }
+}
+
+/* --- board comparison: spec strip ---------------------------------------
+   One navy bar comparing Influence Board with a traditional board seat, the
+   two answers at the same size so it reads as a direct comparison.
+   From 1201px: the four topics run across as columns, Influence Board's
+   answers on the top row and the board seat's on the row below (CSS subgrid
+   keeps the rows lined up). Narrower, or without subgrid support: one row per
+   topic with the two answers side by side. Phones: the topic sits above its
+   two answers. It is a table either way, so screen readers hear the topic,
+   then Influence Board's answer, then the board seat's. */
+.ibcp .ib-cmp {
+  --cmp-pad: clamp(14px,2vw,24px);
+  margin-top: clamp(24px,3.4vw,36px); background: #042D47; border-radius: 14px; border-top: 5px solid #F15F3E;
+  box-shadow: 0 20px 46px rgba(4,45,71,0.14); padding: clamp(18px,2.4vw,28px) clamp(20px,2.6vw,32px);
+}
+.ibcp .ib-cmp .ib-cmp-head, .ibcp .ib-cmp .ib-cmp-item {
+  display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1fr) minmax(0,1fr); column-gap: var(--cmp-pad); align-items: start;
+}
+.ibcp .ib-cmp .ib-cmp-head { padding: 2px 0 14px; }
+.ibcp .ib-cmp .ib-cmp-item { padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.14); }
+.ibcp .ib-cmp .ib-cmp-item:last-child { padding-bottom: 2px; }
+.ibcp .ib-cmp .ib-cmp-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.ibcp .ib-cmp .ib-cmp-label { padding-top: 5px; font: 700 13px/1.3 Barlow, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #FAA439; }
+.ibcp .ib-cmp .ib-cmp-who-ib, .ibcp .ib-cmp .ib-cmp-who-bs { font-family: Aleo, Georgia, serif; font-weight: 700; font-size: clamp(17px,1.5vw,20px); line-height: 1.2; text-wrap: balance; }
+.ibcp .ib-cmp .ib-cmp-ib, .ibcp .ib-cmp .ib-cmp-bs { font-family: Aleo, Georgia, serif; font-weight: 700; font-size: clamp(18px,1.6vw,22px); line-height: 1.25; text-wrap: balance; }
+.ibcp .ib-cmp .ib-cmp-who-ib, .ibcp .ib-cmp .ib-cmp-ib { color: #FFFFFF; }
+.ibcp .ib-cmp .ib-cmp-who-bs, .ibcp .ib-cmp .ib-cmp-bs { color: #A9BCCB; }
+@media (max-width: 640px) {
+  .ibcp .ib-cmp .ib-cmp-head, .ibcp .ib-cmp .ib-cmp-item { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  /* the empty corner cell stays for screen readers but leaves the two-column grid */
+  .ibcp .ib-cmp .ib-cmp-corner { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ibcp .ib-cmp .ib-cmp-label { grid-column: 1 / -1; padding: 0 0 6px; }
+  .ibcp .ib-cmp .ib-cmp-who-ib, .ibcp .ib-cmp .ib-cmp-who-bs { font-size: 16px; }
+  .ibcp .ib-cmp .ib-cmp-ib, .ibcp .ib-cmp .ib-cmp-bs { font-size: 17px; }
+}
+@media (min-width: 1201px) {
+  @supports (grid-template-rows: subgrid) {
+    .ibcp .ib-cmp { display: grid; grid-template-columns: minmax(0,0.8fr) minmax(0,1.3fr) minmax(0,1.25fr) minmax(0,0.95fr) minmax(0,1.45fr); grid-template-rows: auto auto auto; grid-auto-flow: column; }
+    .ibcp .ib-cmp .ib-cmp-head, .ibcp .ib-cmp .ib-cmp-item {
+      grid-row: 1 / span 3; grid-template-columns: minmax(0,1fr); grid-template-rows: subgrid; column-gap: 0;
+      padding: 0 var(--cmp-pad); border-top: 0; border-left: 1px solid rgba(255,255,255,0.14);
+    }
+    .ibcp .ib-cmp .ib-cmp-head { padding-left: 0; border-left: 0; }
+    .ibcp .ib-cmp .ib-cmp-item:last-child { padding-right: 0; padding-bottom: 0; }
+    .ibcp .ib-cmp .ib-cmp-label { padding: 0 0 10px; }
+    .ibcp .ib-cmp .ib-cmp-who-ib, .ibcp .ib-cmp .ib-cmp-ib { padding-bottom: 14px; }
+    /* the line between the two rows runs the full width of the bar */
+    .ibcp .ib-cmp .ib-cmp-who-bs, .ibcp .ib-cmp .ib-cmp-bs { margin: 0 calc(-1 * var(--cmp-pad)); padding: 14px var(--cmp-pad) 0; border-top: 1px solid rgba(255,255,255,0.14); }
+    .ibcp .ib-cmp .ib-cmp-who-bs { margin-left: 0; padding-left: 0; }
+    .ibcp .ib-cmp .ib-cmp-item:last-child .ib-cmp-bs { margin-right: 0; padding-right: 0; }
+  }
+}
+
+/* --- FAQ: question list + answer panel ----------------------------------
+   Desktop: all nine questions in a list, and the one you pick shows large in
+   the navy panel beside it. Phones: a tap-to-open list; answers stay open
+   until tapped again, so the page never jumps. Without JavaScript, every
+   answer simply shows under its question.
+   Each answer lives once, under its question. The panel copies the picked
+   one, so an answer only ever needs editing in one place. A link in an
+   answer works in both places: the panel's copy stays out of the tab order
+   (screen readers and keyboards use the real one under the question) and
+   shows the focus ring whenever the real one has focus. */
+.ibcp .ib-faq { margin-top: clamp(28px,4vw,44px); }
+.ibcp .ib-faq .ib-faq-list { position: relative; border-top: 1px solid #E4E2E2; }
+.ibcp .ib-faq .ib-faq-h { margin: 0; padding: 0; border: 0; font: inherit; }
+.ibcp .ib-faq .ib-faq-q,
+.ibcp .ib-faq .ib-faq-q:focus,
+.ibcp .ib-faq .ib-faq-q:active {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 17px 16px 17px 14px; text-align: left; cursor: pointer;
+  background: none; color: #3C3C3C;
+  border: 0; border-bottom: 1px solid #E4E2E2; border-left: 4px solid transparent; border-radius: 0;
+  font: 600 17px/1.35 Barlow, sans-serif; letter-spacing: normal; text-transform: none;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.ibcp .ib-faq .ib-faq-q:focus-visible { outline: 3px solid #499BC3; outline-offset: -3px; border-radius: 0; }
+.ibcp .ib-faq .ib-faq-q svg { flex: none; width: 18px; height: 18px; transition: transform .2s; }
+.ibcp .ib-faq .ib-faq-a { padding: 0 16px 18px 18px; border-bottom: 1px solid #E4E2E2; font: 400 17px/1.6 Barlow, sans-serif; color: #424242; }
+.ibcp .ib-faq .ib-faq-a p { margin: 0; font: inherit; color: inherit; }
+.ibcp .ib-faq .ib-faq-panel { display: none; }
+
+/* no JavaScript: a plain list, every answer showing */
+.ibcp .ib-faq:not(.is-ready) .ib-faq-q { border-bottom: 0; padding-bottom: 8px; cursor: default; }
+.ibcp .ib-faq:not(.is-ready) .ib-faq-q svg { display: none; }
+
+/* interactive */
+@media (hover: hover) { .ibcp .ib-faq.is-ready .ib-faq-q:hover { color: #042D47; background: #FAFAFA; } }
+.ibcp .ib-faq.is-ready .ib-faq-item.is-open .ib-faq-q { color: #042D47; background: #F5F5F5; border-left-color: #F15F3E; }
+.ibcp .ib-faq.is-ready .ib-faq-item:not(.is-open) .ib-faq-a { display: none; }
+
+@media (min-width: 861px) {
+  .ibcp .ib-faq.is-ready { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: clamp(20px,3vw,44px); align-items: start; }
+  .ibcp .ib-faq.is-ready .ib-faq-panel {
+    display: flex; flex-direction: column;
+    position: -webkit-sticky; position: sticky; top: 112px; /* clears the fixed site header */
+    background: #042D47; border-radius: 14px; padding: clamp(26px,3.4vw,44px);
+    min-height: 300px; box-shadow: 0 20px 46px rgba(4,45,71,0.18);
+  }
+  /* the picked answer stays readable to screen readers; the panel shows it on screen */
+  .ibcp .ib-faq.is-ready .ib-faq-item.is-open .ib-faq-a {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+  }
+}
+@media (max-width: 860px) {
+  .ibcp .ib-faq.is-ready .ib-faq-q svg { transform: rotate(90deg); }
+  .ibcp .ib-faq.is-ready .ib-faq-item.is-open .ib-faq-q svg { transform: rotate(-90deg); }
+  .ibcp .ib-faq.is-ready .ib-faq-item.is-open .ib-faq-a { background: #F5F5F5; border-left: 4px solid #F15F3E; padding: 0 16px 18px 14px; }
+}
+.ibcp .ib-faq .ib-faq-panel-tag { margin: 0; font: 700 13px/1.3 Barlow, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #FAA439; }
+.ibcp .ib-faq .ib-faq-panel-q { margin: 12px 0 0; font-family: Aleo, Georgia, serif; font-weight: 700; font-size: clamp(22px,2.4vw,30px); line-height: 1.2; color: #FFFFFF; text-wrap: balance; }
+.ibcp .ib-faq .ib-faq-panel-a { margin: 16px 0 26px; font: 400 clamp(17px,1.5vw,20px)/1.6 Barlow, sans-serif; color: #DCE6ED; }
+.ibcp .ib-faq .ib-faq-panel-a p { margin: 0; font: inherit; color: inherit; }
+.ibcp .ib-faq .ib-faq-a p + p, .ibcp .ib-faq .ib-faq-panel-a p + p { margin-top: 12px; }
+/* links inside answers: rust and underlined on the light list, white with a
+   gold underline in the navy panel. Set in full so theme link rules can't
+   restyle them. */
+.ibcp .ib-faq .ib-faq-a a, .ibcp .ib-faq .ib-faq-a a:visited {
+  color: #B0472C; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+  border: 0; box-shadow: none; background: none;
+}
+.ibcp .ib-faq .ib-faq-a a:hover { color: #042D47; }
+.ibcp .ib-faq .ib-faq-panel-a a, .ibcp .ib-faq .ib-faq-panel-a a:visited {
+  color: #FFFFFF; font-weight: 600; text-decoration: underline; text-decoration-color: #FAA439; text-decoration-thickness: 2px; text-underline-offset: 4px;
+  border: 0; box-shadow: none; background: none;
+}
+.ibcp .ib-faq .ib-faq-panel-a a:hover { color: #FAA439; }
+.ibcp .ib-faq .ib-faq-panel-a a.is-focus { outline: 3px solid #FAA439; outline-offset: 3px; border-radius: 3px; }
+.ibcp .ib-faq .ib-faq-panel-count { margin: auto 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.16); font: 600 14px/1.3 Barlow, sans-serif; color: #8FA5B5; }
+
+/* --- guards against inherited theme + block-editor styles ---------------
+   Carried over from the homepage build. The theme and the block editor style
+   BARE ELEMENTS (button, input, blockquote, li), and those rules reach inside
+   the page. On the homepage's first deploy that produced a hairline border
+   around the slider tracks, doubled quote marks on the quotes, and stray
+   bullets. Kept whole so this page stays safe if a list or button is added.
+   All of the below is scoped to .ibcp. Nothing outside this page changes.
+   -------------------------------------------------------------------- */
+
+/* Buttons: the theme adds padding, uppercase, letter-spacing and a width. */
+.ibcp button {
+  margin: 0; border: 0; border-radius: 0; background: none;
+  box-shadow: none; text-shadow: none;
+  text-transform: none; letter-spacing: normal; white-space: normal;
+  width: auto; min-width: 0; min-height: 0; height: auto;
+  -webkit-appearance: none; appearance: none;
+}
+
+/* Inputs: the theme borders every input; the range sliders inherited it. */
+.ibcp input { border: 0; box-shadow: none; }
+.ibcp [data-terms-range] {
+  border: 0 !important; border-radius: 0 !important;
+  box-shadow: none !important; padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Quotes: the theme adds its own decorative quote glyphs via pseudo-elements,
+   which doubled the quotes already set in the copy. */
+.ibcp blockquote, .ibcp q {
+  quotes: none; border: 0; padding: 0; font-style: normal;
+}
+.ibcp blockquote::before, .ibcp blockquote::after,
+.ibcp q::before, .ibcp q::after {
+  content: none !important; display: none !important;
+}
+
+/* Lists: kill inherited markers and bullet pseudo-elements. !important is
+   required: a theme rule shaped like `.entry-content ul li` outranks a plain
+   `.ibcp li`. */
+.ibcp ul, .ibcp ol, .ibcp li { list-style: none !important; }
+.ibcp ul, .ibcp ol { padding-left: 0; }
+.ibcp li { text-indent: 0; }
+.ibcp li::marker {
+  content: "" !important; color: transparent !important; font-size: 0 !important;
+}
+.ibcp li::before, .ibcp li::after {
+  content: none !important; display: none !important;
+}
+
+/* Figures: the browser default margin offsets the quote cards. */
+.ibcp figure { margin: 0; }
+
+/* Iframes: some themes add margins, borders or a max-height to embeds. */
+.ibcp iframe { margin: 0; border: 0; max-width: 100%; max-height: none; display: block; }
+
+/* --- full bleed: break out of the theme's centered content column --- */
+.ibcp {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow-x: hidden;
+  /* clip where supported: "hidden" turns this wrapper into a scroll container,
+     which stops the FAQ answer panel from staying in view as you scroll */
+  overflow-x: clip;
+}
+
+/* ============================================================
+   THEME INTEGRATION: this page only. Same as the homepage build.
+   KEEP the site header, nav and footer. Hide only the page-title
+   banner, and zero the theme's content padding.
+
+   IMPORTANT: do not zero margin-top on .site-inner.
+   The Altitude Pro header is position:fixed (~91px tall, z-index 999)
+   and floats above the page. The theme's `.site-inner { margin-top:100px }`
+   is the ONLY thing keeping content out from under it. Zero it and the
+   top ~91px of the hero (the H1) hides behind the white header bar.
+   ============================================================ */
+.entry-header, .entry-title, .page-header, .archive-title { display: none !important; }
+
+/* Inner wrappers: safe to fully zero. */
+.content-sidebar-wrap, .content, .entry, .entry-content {
+  padding-top: 0 !important; padding-bottom: 0 !important;
+  margin-top: 0 !important; margin-bottom: 0 !important;
+  max-width: none !important;
+}
+
+/* .site-inner: strip padding, width cap and bottom margin, but KEEP its
+   top margin so the fixed header still has its clearance. */
+.site-inner {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  max-width: none !important;
+}
+</style>
+
+<div class="ibcp">
+
+<!-- 1. HERO ========================================================== -->
+<section style="background:#042D47;position:relative;overflow:hidden">
+  <div style="max-width:1340px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+
+    <div class="ib-hero-grid" style="display:grid;gap:clamp(24px,4vw,60px);align-items:start;padding:clamp(34px,4vw,54px) 0 clamp(34px,4vw,54px)">
+      <div>
+        <p style="margin:0 0 14px;font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#FAA439">A new category of board</p>
+        <h1 style="font-family:Aleo,Georgia,serif;font-weight:700;color:#FFFFFF;font-size:clamp(30px,3.5vw,46px);line-height:1.18;letter-spacing:0.012em;margin:0;text-wrap:balance">Join 2,000+ <span style="white-space:nowrap">high-level</span> execs who've set new rules for how vendors reach them.</h1>
+        <p style="font:400 18.5px/1.6 Barlow,sans-serif;color:#E7EDF1;max-width:520px;text-wrap:pretty;margin:22px 0 22px">Members include Fortune 1000 leaders. <b style="color:#FFFFFF;font-weight:600">You set your rules, we enforce them,</b> and every meeting funds a worthy cause you choose.</p>
+        <ul style="display:flex;flex-wrap:wrap;gap:10px 24px;margin:0 0 32px;padding:0">
+          <li style="display:flex;align-items:center;gap:8px;font:600 16px/1.3 Barlow,sans-serif;color:#FFFFFF"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#F15F3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Low time commitment</li>
+          <li style="display:flex;align-items:center;gap:8px;font:600 16px/1.3 Barlow,sans-serif;color:#FFFFFF"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#F15F3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>You set the term</li>
+          <li style="display:flex;align-items:center;gap:8px;font:600 16px/1.3 Barlow,sans-serif;color:#FFFFFF"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#F15F3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No fiduciary risk</li>
+        </ul>
+        <div>
+          <a href="https://app.influenceboard.com/#!/signup" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:39px;padding:0 26px;background:#499BC3;color:#FFFFFF;font:700 15px/1 Barlow,sans-serif;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-radius:999px" class="ibhv-0">Set my rules</a>
+          <p style="margin-top:14px;font:400 15px/1.4 Barlow,sans-serif;color:#B8CCD9">Free for executives. Takes about 90 seconds.</p>
+        </div>
+      </div>
+
+      <!-- Hero video: replaces the homepage's inbox animation on this page.
+           Shows on phones too, under the button. -->
+      <div class="ib-hero-video">
+        <div style="position:relative;padding:56.25% 0 0 0;border-radius:14px;overflow:hidden;background:#0A2438;box-shadow:0 20px 46px rgba(0,0,0,0.35)">
+          <a href="https://vimeo.com/938205316" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 15px/1.4 Barlow,sans-serif;color:#DCE6ED;text-decoration:underline">Watch the video on Vimeo</a>
+          <iframe src="https://player.vimeo.com/video/938205316?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" title="How Influence Board started"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="width:100vw;position:relative;left:50%;margin-left:-50vw;background:#0B3D5C;padding:28px 0 36px">
+    <div style="max-width:1340px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <p style="font:italic 400 16px/1.5 Barlow,sans-serif;color:#DCE9F1;text-align:left;margin-bottom:22px">Members include leaders at companies like these.</p>
+      <div data-ticker-desktop style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+        <div data-ticker-track style="display:flex;align-items:center;width:max-content;gap:clamp(42px,5.5vw,72px)">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/google.png" alt="Google" style="height:34px;width:auto;flex-shrink:0;opacity:0.95" width="140" height="46">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/blackrock.png" alt="BlackRock" style="height:30px;width:auto;flex-shrink:0;opacity:0.95" width="205" height="30">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/t-mobile.png" alt="T-Mobile" style="height:30px;width:auto;flex-shrink:0;opacity:0.95" width="148" height="30">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/dish.png" alt="Dish" style="height:34px;width:auto;flex-shrink:0;opacity:0.95" width="93" height="42">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/zoom.png" alt="Zoom" style="height:27px;width:auto;flex-shrink:0;opacity:0.95" width="127" height="29">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/abbvie.png" alt="AbbVie" style="height:27px;width:auto;flex-shrink:0;opacity:0.95" width="158" height="28">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/zayo.png" alt="Zayo" style="height:32px;width:auto;flex-shrink:0;opacity:0.95" width="101" height="33">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/reddit.png" alt="Reddit" style="height:40px;width:auto;flex-shrink:0;opacity:0.95" width="67" height="56">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/google.png" alt="" aria-hidden="true" style="height:34px;width:auto;flex-shrink:0;opacity:0.95" width="140" height="46">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/blackrock.png" alt="" aria-hidden="true" style="height:30px;width:auto;flex-shrink:0;opacity:0.95" width="205" height="30">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/t-mobile.png" alt="" aria-hidden="true" style="height:30px;width:auto;flex-shrink:0;opacity:0.95" width="148" height="30">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/dish.png" alt="" aria-hidden="true" style="height:34px;width:auto;flex-shrink:0;opacity:0.95" width="93" height="42">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/zoom.png" alt="" aria-hidden="true" style="height:27px;width:auto;flex-shrink:0;opacity:0.95" width="127" height="29">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/abbvie.png" alt="" aria-hidden="true" style="height:27px;width:auto;flex-shrink:0;opacity:0.95" width="158" height="28">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/zayo.png" alt="" aria-hidden="true" style="height:32px;width:auto;flex-shrink:0;opacity:0.95" width="101" height="33">
+          <img src="https://influenceboard.com/wp-content/uploads/2026/09/reddit.png" alt="" aria-hidden="true" style="height:40px;width:auto;flex-shrink:0;opacity:0.95" width="67" height="56">
+        </div>
+      </div>
+      <div data-ticker-mobile style="align-items:center;gap:34px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;margin:0 calc(-1 * clamp(20px,4vw,56px));padding:2px 72px 10px clamp(20px,4vw,56px);scroll-padding-left:clamp(20px,4vw,56px);-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 64px),transparent)">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/google.png" alt="Google" style="height:32px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="140" height="46">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/blackrock.png" alt="BlackRock" style="height:27px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="205" height="30">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/t-mobile.png" alt="T-Mobile" style="height:27px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="148" height="30">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/dish.png" alt="Dish" style="height:32px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="93" height="42">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/zoom.png" alt="Zoom" style="height:23px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="127" height="29">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/abbvie.png" alt="AbbVie" style="height:23px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="158" height="28">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/zayo.png" alt="Zayo" style="height:30px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="101" height="33">
+        <img src="https://influenceboard.com/wp-content/uploads/2026/09/reddit.png" alt="Reddit" style="height:36px;width:auto;flex-shrink:0;opacity:0.95;scroll-snap-align:start" width="67" height="56">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHO SET THE RULES: homepage "Why now" layout, homepage "Who set the rules" card words -->
+<section id="rules" style="background:#FFFFFF">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,84px) clamp(18px,4vw,56px);display:grid;gap:clamp(28px,4vw,60px);grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));align-items:center">
+
+    <div>
+      <p style="font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#B0472C">It started with executives</p>
+      <h2 style="margin-top:10px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.12;color:#042D47;max-width:26ch;text-wrap:balance">Who set the rules.</h2>
+      <div style="display:grid;gap:14px;margin-top:clamp(18px,2.2vw,26px);max-width:62ch">
+        <p style="font:400 clamp(16px,1.3vw,18px)/1.65 Barlow,sans-serif;color:#3C3C3C">Influence Board grew out of years of executive roundtables, where the same idea kept surfacing: outreach should come through one channel that screens for relevance first. When an executive agrees to a meeting, it should also give something back: a meaningful donation to a cause they choose.</p>
+        <p style="padding-top:16px;border-top:1px solid #E4E2E2;font:600 clamp(16px,1.3vw,18px)/1.6 Barlow,sans-serif;color:#042D47">2,000+ leaders have joined our platform.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center">
+    <figure role="img" aria-label="An executive's access-rules screen, shown as a phone mockup: approved topics, topics they are not open to, a slider set to three requests a month, and a slider setting what their time is worth per 60-minute meeting, going to a children's hospital." style="margin:0;width:100%;max-width:300px;background:#0A2438;border-radius:38px;padding:10px;box-shadow:0 20px 46px rgba(4,45,71,0.28);border:1px solid rgba(255,255,255,0.08)">
+        <div style="position:relative;background:#042D47;border-radius:30px;padding:14px 16px 16px;overflow:hidden">
+          <div style="font:600 11px/1 Barlow,sans-serif;color:#DCE6ED;padding:0 4px">
+            <span>9:41</span>
+          </div>
+          <div aria-hidden="true" style="position:absolute;top:9px;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#0A2438;border-radius:999px"></div>
+
+          <p style="margin-top:14px;font:700 11px/1.3 Barlow,sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#FAA439">Your terms</p>
+          <p style="margin-top:6px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:15px;line-height:1.28;color:#FFFFFF">Most requests never reach you.</p>
+
+          <div style="background:#FFFFFF;border-radius:12px;margin-top:12px;padding:13px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+              <p style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:13.5px;line-height:1.2;color:#042D47">CTO <span style="color:#B0472C">·</span> Global logistics</p>
+              <span style="display:inline-flex;align-items:center;gap:4px;flex:none;font:700 9px/1 Barlow,sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#6E6A6B;background:#F5F5F5;border:1px solid #EDEBEC;border-radius:999px;padding:5px 8px">⚙ Rules</span>
+            </div>
+
+            <div style="padding-top:10px">
+              <span style="font:700 9px/1.35 Barlow,sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#6E6A6B;display:block;margin-bottom:5px">Approved topics</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center">
+                <span style="display:inline-flex;align-items:center;gap:3px;font:600 10.5px/1 Barlow,sans-serif;padding:4px 8px;border-radius:999px;background:#EFF7E0;color:#4C7A0A;border:1px solid #C6DFA0">✓ Innovation</span>
+                <span style="display:inline-flex;align-items:center;gap:3px;font:600 10.5px/1 Barlow,sans-serif;padding:4px 8px;border-radius:999px;background:#EFF7E0;color:#4C7A0A;border:1px solid #C6DFA0">✓ AI &amp; automation</span>
+              </div>
+            </div>
+
+            <div style="padding:9px 0;border-top:1px solid #EDEBEC">
+              <span style="font:700 9px/1.35 Barlow,sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#B0472C;display:block;margin-bottom:5px">Not open to</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center">
+                <span style="font:600 10.5px/1 Barlow,sans-serif;padding:4px 8px;border-radius:999px;background:#FDE7E1;color:#B0472C;border:1px solid #F6C9BB">Staffing agencies</span>
+                <span style="font:600 10.5px/1 Barlow,sans-serif;padding:4px 8px;border-radius:999px;background:#FDE7E1;color:#B0472C;border:1px solid #F6C9BB">Reseller pitches</span>
+              </div>
+            </div>
+
+            <div style="padding:9px 0;border-top:1px solid #EDEBEC">
+              <span style="font:700 9px/1 Barlow,sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#6E6A6B">Type:</span>
+              <span style="font:700 12.5px/1 Barlow,sans-serif;color:#042D47">&nbsp;Business conversation</span>
+            </div>
+
+            <div style="padding:9px 0;border-top:1px solid #EDEBEC">
+              <span style="font:700 9px/1.35 Barlow,sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#6E6A6B;display:block;margin-bottom:5px">Requests allowed per month</span>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="flex:none;min-width:40px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:19px;line-height:1;color:#042D47">3<small style="display:block;font-family:Barlow,sans-serif;font-size:8px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#6E6A6B;margin-top:2px;line-height:1.2">a month</small></span>
+                <div style="flex:1;min-width:0">
+                  <input type="range" data-terms-range="" min="0" max="10" step="1" value="3" aria-label="Requests allowed per month" style="--thumb:#F15F3E;--fill:linear-gradient(to right, #F15F3E 0 33%, #D2D0D1 33% 100%)">
+                  <div style="display:flex;justify-content:space-between;font:600 9px/1 Barlow,sans-serif;color:#6E6A6B;margin-top:1px"><span>0</span><span>10</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding-top:9px">
+              <div style="margin-bottom:5px">
+                <span style="font:700 9px/1.35 Barlow,sans-serif;letter-spacing:0.05em;text-transform:uppercase;color:#4C7A0A">What your time is worth</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="flex:none;min-width:52px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:19px;line-height:1;color:#042D47">$500<small style="display:block;font-family:Barlow,sans-serif;font-size:8px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#6E6A6B;margin-top:2px;line-height:1.2">per 60-min</small></span>
+                <div style="flex:1;min-width:0">
+                  <input type="range" data-terms-range="" min="100" max="1000" step="50" value="500" aria-label="What your time is worth, per 60-minute meeting" style="--thumb:#7AAF10;--fill:linear-gradient(to right, #7AAF10 0 44.4%, #D2D0D1 44.4% 100%)">
+                  <div style="display:flex;justify-content:space-between;font:600 9px/1 Barlow,sans-serif;color:#6E6A6B;margin-top:1px"><span>$100</span><span>$1,000</span></div>
+                </div>
+              </div>
+              <p style="margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:400 11px/1.3 Barlow,sans-serif;color:#6E6A6B">Goes to <span style="display:inline-flex;align-items:center;gap:4px;font:600 11px/1 Barlow,sans-serif;padding:5px 9px;border-radius:999px;background:#EFF7E0;color:#4C7A0A;border:1px solid #C6DFA0">♥ Children's hospital</span></p>
+            </div>
+          </div>
+
+          <div aria-hidden="true" style="width:100px;height:4px;background:rgba(255,255,255,0.3);border-radius:999px;margin:14px auto 4px"></div>
+        </div>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<!-- 2b. BOARD COMPARISON: portal-only. One navy strip on the light blue band:
+     Influence Board's answers on one row, the traditional board seat's on the next. -->
+<section id="compare" style="background:#E8F2F8">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(18px,4vw,56px)">
+    <h2 style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.12;color:#042D47;max-width:28ch;text-wrap:balance">How we compare to a traditional board seat.</h2>
+
+    <div class="ib-cmp" role="table" aria-label="Influence Board compared with a traditional board seat">
+      <div class="ib-cmp-head" role="row">
+        <span class="ib-cmp-corner" role="columnheader"><span class="ib-cmp-sr">Topic</span></span>
+        <span class="ib-cmp-who-ib" role="columnheader">Influence Board</span>
+        <span class="ib-cmp-who-bs" role="columnheader">Traditional board seat</span>
+      </div>
+      <div class="ib-cmp-item" role="row"><span class="ib-cmp-label" role="rowheader">Time commitment</span><span class="ib-cmp-ib" role="cell">Low</span><span class="ib-cmp-bs" role="cell">Moderate to high</span></div>
+      <div class="ib-cmp-item" role="row"><span class="ib-cmp-label" role="rowheader">Term</span><span class="ib-cmp-ib" role="cell">Self-determined</span><span class="ib-cmp-bs" role="cell">Preset</span></div>
+      <div class="ib-cmp-item" role="row"><span class="ib-cmp-label" role="rowheader">Fiduciary risk</span><span class="ib-cmp-ib" role="cell">None</span><span class="ib-cmp-bs" role="cell">Some</span></div>
+      <div class="ib-cmp-item" role="row"><span class="ib-cmp-label" role="rowheader">Where the impact goes</span><span class="ib-cmp-ib" role="cell">A cause you choose, every meeting</span><span class="ib-cmp-bs" role="cell">The organization you serve</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOW IT WORKS: homepage section, cards and copy verbatim (calculator line left off) -->
+<section id="how" style="background:#F5F5F5">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(18px,4vw,56px)">
+    <p style="font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#B0472C">How it works</p>
+    <h2 style="margin-top:10px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.12;color:#2C2C2C;max-width:28ch;text-wrap:balance">You set the terms and we handle the enforcing.</h2>
+
+    <div class="ib-how-cards" style="gap:clamp(18px,2.4vw,28px);margin-top:clamp(28px,4vw,44px)">
+
+      <div style="background:#FFFFFF;border:1px solid #E4E2E2;border-top:6px solid #F15F3E;border-radius:14px;padding:clamp(22px,2.6vw,30px)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FDE7E1;color:#B0472C;font:700 20px/1 Barlow,sans-serif">1</span>
+        </div>
+        <h3 style="margin-top:16px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(20px,2.1vw,25px);line-height:1.2;color:#042D47">Set your terms</h3>
+        <p style="margin-top:10px;font:400 17px/1.6 Barlow,sans-serif;color:#424242">Tell us the topics you'd want to meet about, the topics you'd like restricted, how often requests can reach you each month, and choose the causes your meetings will support.</p>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #E4E2E2;border-top:6px solid #FAA439;border-radius:14px;padding:clamp(22px,2.6vw,30px)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#FDEDD5;color:#8A5410;font:700 20px/1 Barlow,sans-serif">2</span>
+        </div>
+        <h3 style="margin-top:16px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(20px,2.1vw,25px);line-height:1.2;color:#042D47">Requests are screened</h3>
+        <p style="margin-top:10px;font:400 17px/1.6 Barlow,sans-serif;color:#424242">Every request that comes through the platform gets checked against your terms before you ever see it. The ones that miss are turned away. The ones that match include context with the donation already attached if you accept.</p>
+      </div>
+
+      <div style="background:#FFFFFF;border:1px solid #E4E2E2;border-top:6px solid #676164;border-radius:14px;padding:clamp(22px,2.6vw,30px)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#EDEBEC;color:#424242;font:700 20px/1 Barlow,sans-serif">3</span>
+        </div>
+        <h3 style="margin-top:16px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(20px,2.1vw,25px);line-height:1.2;color:#042D47">You're in control</h3>
+        <p style="margin-top:10px;font:400 17px/1.6 Barlow,sans-serif;color:#424242">Accept it or decline it, with no obligation either way. Many executives end up routing all of their vendor outreach through the platform.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4. FAQ: portal-only, right after How it works. Desktop: question list with the picked
+     answer in the navy panel beside it. Phones: tap-to-open list. Script at the bottom. -->
+<section id="faq" style="background:#FFFFFF">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(18px,4vw,56px)">
+    <p style="font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#B0472C">The questions we get most</p>
+    <h2 style="margin-top:10px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,42px);line-height:1.12;color:#042D47;max-width:24ch;text-wrap:balance">FAQs</h2>
+
+    <div class="ib-faq" data-faq>
+      <div class="ib-faq-list">
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q1" aria-controls="ib-faq-a1" data-topic="The basics"><span>What is Influence Board?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a1"><p>A platform where we give you the ability to set your rules on which vendors/offerings get your time. You set the terms, we do the filtering, and every meeting you accept funds a cause you choose. It isn't a traditional board seat or advisory role.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q2" aria-controls="ib-faq-a2" data-topic="The basics"><span>Who is this for?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a2"><p>Directors and above at companies with more than $5 million in revenue, plus senior leaders at major nonprofits, schools, and investment firms. If your inbox is full of pitches you didn't ask for, this was built for you.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q3" aria-controls="ib-faq-a3" data-topic="The basics"><span>Who else has joined?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a3"><p>We keep our members' names private, but we can tell you this: more than 2,000 senior leaders have joined, including executives at companies like Google, BlackRock, and T-Mobile.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q4" aria-controls="ib-faq-a4" data-topic="Time and money"><span>Do I get paid?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a4"><p>Not personally, and it costs you nothing to join. You decide what your time is worth, and when a meeting happens with you, the vendor donates that amount to the cause you chose.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q5" aria-controls="ib-faq-a5" data-topic="Time and money"><span>How much time does it take?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a5"><p>About 90 seconds to set your terms. After that, it can be as little as one 60-minute meeting a month. You decide how many requests you get. You can pause anytime.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q6" aria-controls="ib-faq-a6" data-topic="Time and money"><span>Can I choose my own charity?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a6"><p>Yes. Pick from established charities, or nominate a smaller one close to your heart.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q7" aria-controls="ib-faq-a7" data-topic="What to expect"><span>What happens after I sign up?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a7"><p>You set your terms, and we do the filtering. When a request fits, we send it your way to accept or decline. If nothing fits, you won't hear from us.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q8" aria-controls="ib-faq-a8" data-topic="What to expect"><span>Is it only vendor meetings?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a8"><p>Vendor meetings are the core, but you can also give your time mentoring students and entrepreneurs in your field.</p></div>
+        </div>
+        <div class="ib-faq-item">
+          <h3 class="ib-faq-h"><button type="button" class="ib-faq-q" id="ib-faq-q9" aria-controls="ib-faq-a9" data-topic="What to expect"><span>Can I use it to reach other executives?</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B0472C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button></h3>
+          <div class="ib-faq-a" id="ib-faq-a9"><p>Not from this side of the platform. Influence Board exists to protect your time, so you decide which requests reach you. If you ever want to request meetings yourself, that happens through our <a href="https://influenceboard.com/meeting-requester/">Meeting Requester side</a>.</p></div>
+        </div>
+      </div>
+      <div class="ib-faq-panel" aria-hidden="true">
+        <p class="ib-faq-panel-tag" data-faq-tag></p>
+        <p class="ib-faq-panel-q" data-faq-q></p>
+        <div class="ib-faq-panel-a" data-faq-a></div>
+        <p class="ib-faq-panel-count" data-faq-count></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. THE IMPACT: homepage section verbatim ============================ -->
+<section id="proof" style="background:#042D47;color:#FFFFFF">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(18px,4vw,56px)">
+    <p style="font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#FAA439">The impact</p>
+    <h2 style="margin-top:10px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(24px,3.1vw,38px);line-height:1.12;color:#FFFFFF;max-width:none;text-wrap:balance">Better conversations. Real-world impact.</h2>
+
+    <p style="margin-top:clamp(14px,1.8vw,20px);font:400 clamp(16px,1.3vw,18px)/1.65 Barlow,sans-serif;color:#DCE6ED;max-width:62ch;text-wrap:pretty">Influence Board isn't about taking more meetings. It's about the ones you do take being worth the hour, and counting for something after everyone hangs up.</p>
+
+    <div class="ib-stats" style="gap:clamp(14px,2vw,20px);margin-top:clamp(26px,3.4vw,40px)">
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:22px">
+        <p data-countup style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#FAA439">$300,000+</p>
+        <p style="margin-top:8px;font:400 16px/1.5 Barlow,sans-serif;color:#DCE6ED">raised for charity</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:22px">
+        <p data-countup style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#FFFFFF">800+</p>
+        <p style="margin-top:8px;font:400 16px/1.5 Barlow,sans-serif;color:#DCE6ED">meetings held on executive terms</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:22px">
+        <p data-countup style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#FFFFFF">250+</p>
+        <p style="margin-top:8px;font:400 16px/1.5 Barlow,sans-serif;color:#DCE6ED">causes funded</p>
+      </div>
+    </div>
+
+    <div style="display:grid;gap:clamp(20px,3vw,36px);margin-top:clamp(30px,4vw,52px);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:start">
+
+      <div style="background:#FFFFFF;border-radius:18px;padding:clamp(20px,2.6vw,30px)">
+        <h3 style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(20px,2.1vw,26px);line-height:1.2;color:#042D47">In their words</h3>
+        <p style="margin-top:8px;font:400 16px/1.5 Barlow,sans-serif;color:#5A5A5A">What we hear most often from executives:</p>
+        <div style="display:grid;gap:12px;margin-top:18px">
+          <figure style="margin:0;padding:18px 20px;background:#F5F5F5;border-radius:12px;border-left:6px solid #F15F3E">
+          <blockquote style="margin:0;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(18px,1.8vw,21px);line-height:1.35;color:#042D47;text-wrap:pretty">“At this point in my career, I don’t need another coffee gift card or fancy dinner. I want conversations that do something.”</blockquote>
+          <figcaption style="margin-top:10px;font:400 15px/1.4 Barlow,sans-serif;color:#5A5A5A">CIO, national community management firm</figcaption>
+        </figure>
+          <figure style="margin:0;padding:18px 20px;background:#F5F5F5;border-radius:12px;border-left:6px solid #FAA439">
+          <blockquote style="margin:0;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(18px,1.8vw,21px);line-height:1.35;color:#042D47;text-wrap:pretty">“If somebody really wants to get ahold of me, they put skin in the game. It keeps me clean.”</blockquote>
+          <figcaption style="margin-top:10px;font:400 15px/1.4 Barlow,sans-serif;color:#5A5A5A">CTO, global logistics company</figcaption>
+        </figure>
+          <figure style="margin:0;padding:18px 20px;background:#F5F5F5;border-radius:12px;border-left:6px solid #499BC3">
+          <blockquote style="margin:0;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(18px,1.8vw,21px);line-height:1.35;color:#042D47;text-wrap:pretty">“The folks I’ve met through Influence Board come better prepared. They know more about what we’re trying to do. Big difference from the usual spray-and-pray cold calls.”</blockquote>
+          <figcaption style="margin-top:10px;font:400 15px/1.4 Barlow,sans-serif;color:#5A5A5A">CIO, financial services firm</figcaption>
+        </figure>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(20px,2.1vw,26px);line-height:1.2;color:#FFFFFF">Where the money goes</h3>
+        <p style="margin-top:8px;font:400 16px/1.5 Barlow,sans-serif;color:#DCE6ED;max-width:52ch">Your meetings can support hundreds of organizations doing work such as:</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Warm coats &amp; winter gear</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Bikes for kids</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Vaccinations &amp; health care</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Nights of shelter</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">School books &amp; backpacks</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Meals for families</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Cancer research</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Home repairs &amp; rebuilds</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Classroom supplies</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Youth job training</span>
+          <span style="font:600 13px/1 Barlow,sans-serif;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);color:#FFFFFF">Holiday gifts</span>
+        </div>
+
+        <p style="margin-top:14px;font:400 12.5px/1.4 Barlow,sans-serif;color:#8FA5B5">Each charity determines how the funds are used.</p>
+
+        <p style="margin-top:18px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid rgba(255,255,255,0.3);border-radius:999px;font:700 14px/1.3 Barlow,sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#FFFFFF"><svg aria-hidden="true" viewBox="0 0 24 24" fill="#FAA439" style="flex:none;width:20px;height:20px;display:block"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.34-5.34 1.48 1.48-6.82 6.82z"/></svg>Patented</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PEER SESSIONS: homepage section verbatim ========================== -->
+<section id="members" style="background:#F5F5F5;border-top:1px solid #E4E2E2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(18px,4vw,56px)">
+    <p style="font:700 16px/1.3 Barlow,sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#B0472C">Peer sessions</p>
+    <h2 style="margin-top:10px;font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,40px);line-height:1.12;color:#042D47;max-width:24ch;text-wrap:balance">Meet and collaborate with your peers.</h2>
+    <p style="margin-top:clamp(12px,1.6vw,18px);font:400 clamp(16px,1.3vw,18px)/1.65 Barlow,sans-serif;color:#3C3C3C;max-width:64ch;text-wrap:pretty">Small sessions, built around the people in the room rather than a topic. When the focus is relationships, it's always relevant.</p>
+
+    <ul class="ib-peer-cards" style="list-style:none;padding:0;margin:clamp(22px,3vw,32px) 0 0">
+      <li style="background:#FFFFFF;border:1px solid #E4E2E2;border-radius:14px;padding:18px 20px">
+        <span style="display:flex;align-items:center;gap:11px">
+          <span aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#E8F2F8"><svg viewBox="0 0 24 24" style="width:20px;height:20px;display:block" fill="#4E7E9B" opacity="1"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.4-8 5.4V21h16v-1.6c0-3-3.6-5.4-8-5.4Z"/></svg></span>
+          <span style="min-width:0">
+            <span style="display:block;font:700 15px/1.25 Barlow,sans-serif;color:#042D47">CIO</span>
+            <span style="display:block;font:400 13.5px/1.35 Barlow,sans-serif;color:#6B6B6B">National retail group</span>
+          </span>
+        </span>
+        <span style="display:block;margin-top:13px;padding-top:12px;border-top:1px solid #EDEBEC">
+          <span style="display:flex;align-items:center;gap:8px;font:600 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:16px;height:16px;display:block" fill="none" stroke="#7AAF10" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4.6 4.6L19 7"/></svg>Joined a peer session</span>
+          <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font:500 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:15px;height:15px;display:block" fill="#F15F3E"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Gives to a children's hospital</span>
+        </span>
+      </li>
+      <li style="background:#FFFFFF;border:1px solid #E4E2E2;border-radius:14px;padding:18px 20px">
+        <span style="display:flex;align-items:center;gap:11px">
+          <span aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#E8F2F8"><svg viewBox="0 0 24 24" style="width:20px;height:20px;display:block" fill="#4E7E9B" opacity="1"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.4-8 5.4V21h16v-1.6c0-3-3.6-5.4-8-5.4Z"/></svg></span>
+          <span style="min-width:0">
+            <span style="display:block;font:700 15px/1.25 Barlow,sans-serif;color:#042D47">CTO</span>
+            <span style="display:block;font:400 13.5px/1.35 Barlow,sans-serif;color:#6B6B6B">Global logistics company</span>
+          </span>
+        </span>
+        <span style="display:block;margin-top:13px;padding-top:12px;border-top:1px solid #EDEBEC">
+          <span style="display:flex;align-items:center;gap:8px;font:600 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:16px;height:16px;display:block" fill="none" stroke="#7AAF10" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4.6 4.6L19 7"/></svg>Meets on AI and automation</span>
+          <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font:500 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:15px;height:15px;display:block" fill="#F15F3E"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Gives to a food bank</span>
+        </span>
+      </li>
+      <li style="background:#FFFFFF;border:1px solid #E4E2E2;border-radius:14px;padding:18px 20px">
+        <span style="display:flex;align-items:center;gap:11px">
+          <span aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#E8F2F8"><svg viewBox="0 0 24 24" style="width:20px;height:20px;display:block" fill="#4E7E9B" opacity="1"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.4-8 5.4V21h16v-1.6c0-3-3.6-5.4-8-5.4Z"/></svg></span>
+          <span style="min-width:0">
+            <span style="display:block;font:700 15px/1.25 Barlow,sans-serif;color:#042D47">EVP</span>
+            <span style="display:block;font:400 13.5px/1.35 Barlow,sans-serif;color:#6B6B6B">Financial services firm</span>
+          </span>
+        </span>
+        <span style="display:block;margin-top:13px;padding-top:12px;border-top:1px solid #EDEBEC">
+          <span style="display:flex;align-items:center;gap:8px;font:600 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:16px;height:16px;display:block" fill="none" stroke="#7AAF10" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4.6 4.6L19 7"/></svg>Joined a peer session</span>
+          <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font:500 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:15px;height:15px;display:block" fill="#F15F3E"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Gives to cancer research</span>
+        </span>
+      </li>
+      <li style="background:#FFFFFF;border:1px solid #E4E2E2;border-radius:14px;padding:18px 20px">
+        <span style="display:flex;align-items:center;gap:11px">
+          <span aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#E8F2F8"><svg viewBox="0 0 24 24" style="width:20px;height:20px;display:block" fill="#4E7E9B" opacity="1"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.4-8 5.4V21h16v-1.6c0-3-3.6-5.4-8-5.4Z"/></svg></span>
+          <span style="min-width:0">
+            <span style="display:block;font:700 15px/1.25 Barlow,sans-serif;color:#042D47">CISO</span>
+            <span style="display:block;font:400 13.5px/1.35 Barlow,sans-serif;color:#6B6B6B">Healthcare network</span>
+          </span>
+        </span>
+        <span style="display:block;margin-top:13px;padding-top:12px;border-top:1px solid #EDEBEC">
+          <span style="display:flex;align-items:center;gap:8px;font:600 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:16px;height:16px;display:block" fill="none" stroke="#7AAF10" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4.6 4.6L19 7"/></svg>Meets on cybersecurity</span>
+          <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font:500 13.5px/1.45 Barlow,sans-serif;color:#042D47"><svg aria-hidden="true" viewBox="0 0 24 24" style="flex:none;width:15px;height:15px;display:block" fill="#F15F3E"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Gives to youth mentoring</span>
+        </span>
+      </li>
+    </ul>
+    <p style="margin-top:14px;font:400 12.5px/1.4 Barlow,sans-serif;color:#6E6A6B">Members are shown by role and industry. We never publish who has joined.</p>
+  </div>
+</section>
+
+<!-- 7. CLOSE: homepage close, vendor link removed ======================= -->
+<section id="close" style="background:#FFFFFF;border-top:1px solid #E4E2E2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(18px,4vw,56px);text-align:center">
+    <h2 style="font-family:Aleo,Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.15;color:#042D47;max-width:none;margin:0 auto;text-wrap:balance">Take back control of <span style="color:#F15F3E">your time.</span></h2>
+    <p style="margin-top:clamp(16px,2vw,22px);font:400 clamp(17px,1.5vw,19px)/1.8 Barlow,sans-serif;color:#3C3C3C;max-width:44ch;margin-left:auto;margin-right:auto;text-wrap:pretty">You decide what gets through.<br>Every meeting funds a cause you choose.</p>
+    <div style="margin-top:clamp(24px,3vw,34px)">
+      <a href="https://app.influenceboard.com/#!/signup" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:39px;padding:0 26px;background:#499BC3;color:#FFFFFF;font:700 15px/1 Barlow,sans-serif;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-radius:999px" class="ibhv-2">Set my rules</a>
+      <p style="margin-top:14px;font:400 15px/1.4 Barlow,sans-serif;color:#6E6A6B">Free for executives. Takes about 90 seconds.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// No ampersands in these scripts: WordPress rewrites them (see the v20 note in the CSS).
+(function () {
+  // Wire the phone-mockup sliders so the number label and the track fill
+  // follow the thumb. Same script as the homepage build.
+  var sliders = document.querySelectorAll('.ibcp [data-terms-range]');
+  if (!sliders.length) return;
+
+  function paint(el) {
+    var min = parseFloat(el.min) || 0;
+    var max = parseFloat(el.max) || 100;
+    var val = parseFloat(el.value) || 0;
+    var pct = max === min ? 0 : ((val - min) / (max - min)) * 100;
+    var thumb = (el.style.getPropertyValue('--thumb') || '#F15F3E').trim();
+
+    el.style.setProperty('--fill',
+      'linear-gradient(to right, ' + thumb + ' 0 ' + pct + '%, #D2D0D1 ' + pct + '% 100%)');
+
+    // The label is the span before the input's wrapper. Its first child is the
+    // number text node; the <small> caption after it must survive.
+    var wrap = el.parentElement;
+    var label = wrap ? wrap.previousElementSibling : null;
+    if (!label || !label.firstChild || label.firstChild.nodeType !== 3) return;
+    var isMoney = label.firstChild.nodeValue.indexOf('$') === 0;
+    label.firstChild.nodeValue = (isMoney ? '$' : '') + val.toLocaleString();
+  }
+
+  sliders.forEach(function (el) {
+    paint(el);
+    el.addEventListener('input', function () { paint(el); });
+    el.addEventListener('change', function () { paint(el); });
+  });
+})();
+</script>
+
+<script>
+(function () {
+  // Count the impact stats up from zero when they scroll into view.
+  // Same script as the homepage build.
+  var els = document.querySelectorAll('.ibcp [data-countup]');
+  if (!els.length) return;
+  var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  var items = [];
+  els.forEach(function (el) {
+    var m = /^(\D*)([\d,]+)(.*)$/.exec(el.textContent.trim());
+    if (!m) return;
+    items.push({ el: el, pre: m[1], target: parseInt(m[2].replace(/,/g, ''), 10), post: m[3], done: false });
+    el.textContent = m[1] + '0' + m[3];
+  });
+  if (!items.length) return;
+
+  function run(item) {
+    if (item.done) return;
+    item.done = true;
+    var dur = 1500, t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var v = Math.round(item.target * eased);
+      item.el.textContent = item.pre + v.toLocaleString() + item.post;
+      if (p < 1) requestAnimationFrame(step);
+      else item.el.textContent = item.pre + item.target.toLocaleString() + item.post;
+    }
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var item = items.filter(function (i) { return i.el === e.target; })[0];
+      if (item) run(item);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.6 });
+  items.forEach(function (i) { io.observe(i.el); });
+})();
+</script>
+
+<script>
+(function () {
+  // FAQ: on desktop the picked question's answer shows in the navy panel
+  // beside the list; on phones answers open under their questions.
+  var root = document.querySelector('.ibcp [data-faq]');
+  if (!root) return;
+  var items = Array.prototype.slice.call(root.querySelectorAll('.ib-faq-item'));
+  var panel = root.querySelector('.ib-faq-panel');
+  if (!items.length || !panel) return;
+  var tag = panel.querySelector('[data-faq-tag]');
+  var q = panel.querySelector('[data-faq-q]');
+  var a = panel.querySelector('[data-faq-a]');
+  var count = panel.querySelector('[data-faq-count]');
+  var phone = window.matchMedia('(max-width: 860px)');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var HEADER = 112; // clears the theme's fixed site header (about 91px tall)
+  var current = 0;
+
+  function btn(i) { return items[i].querySelector('.ib-faq-q'); }
+  function mirror(answer) {
+    // Copy the answer into the panel, links included. The copy is for the
+    // eyes only (the panel is aria-hidden), so its links leave the tab order.
+    while (a.firstChild) a.removeChild(a.firstChild);
+    for (var n = answer.firstChild; n; n = n.nextSibling) a.appendChild(n.cloneNode(true));
+    var ids = a.querySelectorAll('[id]');
+    for (var k = 0; k < ids.length; k++) ids[k].removeAttribute('id');
+    var links = a.querySelectorAll('a');
+    for (var j = 0; j < links.length; j++) links[j].setAttribute('tabindex', '-1');
+  }
+  function setOpen(i, open) {
+    items[i].classList.toggle('is-open', open);
+    btn(i).setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function show(i) {
+    current = i;
+    tag.textContent = btn(i).getAttribute('data-topic') || '';
+    q.textContent = btn(i).textContent.trim();
+    mirror(items[i].querySelector('.ib-faq-a'));
+    count.textContent = 'Question ' + (i + 1) + ' of ' + items.length;
+  }
+  function pick(i) { // desktop: exactly one question is picked
+    items.forEach(function (_, j) { setOpen(j, j === i); });
+    show(i);
+  }
+  function fit() {
+    // Size the panel to its longest answer so it holds still as you click through.
+    panel.style.minHeight = '';
+    if (phone.matches) return;
+    var keep = current, max = 0;
+    for (var i = 0; i < items.length; i++) { show(i); max = Math.max(max, panel.offsetHeight); }
+    show(keep);
+    panel.style.minHeight = max + 'px';
+  }
+  function reveal() {
+    // If a theme wrapper stops the panel from staying in view, bring it back.
+    var r = panel.getBoundingClientRect();
+    if (r.top < HEADER - 16 || r.bottom > window.innerHeight) {
+      window.scrollBy({ top: r.top - HEADER, behavior: reduce.matches ? 'auto' : 'smooth' });
+    }
+  }
+
+  items.forEach(function (item, i) {
+    var b = btn(i);
+    b.addEventListener('click', function () {
+      if (phone.matches) {
+        var open = !item.classList.contains('is-open');
+        setOpen(i, open);
+        if (open) show(i);
+      } else {
+        pick(i);
+        reveal();
+      }
+    });
+    b.addEventListener('keydown', function (e) {
+      var n = e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1
+            : e.key === 'Home' ? 0 : e.key === 'End' ? items.length - 1 : null;
+      if (n === null) return;
+      e.preventDefault();
+      btn((n + items.length) % items.length).focus();
+    });
+  });
+
+  // On desktop the real answer is visually hidden, so when a keyboard user
+  // tabs onto one of its links, show the focus ring on the panel's copy.
+  root.addEventListener('focusin', function (e) {
+    var link = e.target.closest ? e.target.closest('.ib-faq-a a') : null;
+    if (!link) return;
+    var twin = a.querySelectorAll('a')[Array.prototype.indexOf.call(link.closest('.ib-faq-a').querySelectorAll('a'), link)];
+    if (twin) twin.classList.add('is-focus');
+  });
+  root.addEventListener('focusout', function () {
+    var lit = a.querySelectorAll('a.is-focus');
+    for (var k = 0; k < lit.length; k++) lit[k].classList.remove('is-focus');
+  });
+
+  // Moving from the phone layout to the desktop one: keep exactly one picked.
+  function onLayout() { if (!phone.matches) pick(current); fit(); }
+  if (phone.addEventListener) phone.addEventListener('change', onLayout);
+  else if (phone.addListener) phone.addListener(onLayout);
+  var wait;
+  window.addEventListener('resize', function () { clearTimeout(wait); wait = setTimeout(fit, 150); });
+
+  pick(0);
+  root.classList.add('is-ready');
+  fit();
+  var fontsReady = document.fonts ? document.fonts.ready : null;
+  if (fontsReady) fontsReady.then(fit);
+})();
+</script>
+
+<!-- ============================================================
+     PASTE-INTO-WORDPRESS: END
+     ============================================================ -->
+
+</body>
+</html>
