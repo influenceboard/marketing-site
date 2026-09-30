@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Influence Board | Meeting Requester (preview)</title>
+  <!-- PREVIEW-ONLY: these two lines just make the file look right when you open it in a browser. Do NOT paste them into WordPress. -->
+  <style>body{margin:0;background:#042D47;}</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- ===== PASTE EVERYTHING BELOW INTO YOUR WORDPRESS PAGE ======== -->
+<!-- (One Custom HTML block on the existing /meeting-requester/     -->
+<!--  page. KEEP the theme header, nav and footer on this page.)    -->
+<!-- Form: Paperform "meeting-requester"                            -->
+<!--   https://meeting-requester.paperform.co                       -->
+<!--   All three "Introduce yourself" triggers open it as a popup. -->
+<!-- ============================================================= -->
+
+<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     THEME INTEGRATION: this page only. Same as the homepage and
+     Candidate Portal builds, NOT the vendor redirect page.
+     KEEP the site header, nav, mobile menu and footer. This page
+     sits in the main nav, so visitors need a way back.
+
+     IMPORTANT: do not zero margin-top on .site-inner.
+     The Altitude Pro header is position:fixed (~91px tall, z-index 999)
+     at wide screens and floats above the page. The theme's
+     `.site-inner { margin-top:100px }` is the ONLY thing keeping content
+     out from under it. The theme handles that offset responsively,
+     so leave it alone rather than hardcoding a pixel value here.
+
+     The mobile menu plugin is left alone on purpose. On phones it IS
+     the site nav. (The redirect page hides it because it hides the
+     whole header.)
+     ============================================================ */
+  .entry-header, .entry-title, .page-header, .archive-title { display: none !important; }
+
+  /* Inner wrappers: safe to fully zero. */
+  .content-sidebar-wrap, .content, .entry, .entry-content {
+    padding-top: 0 !important; padding-bottom: 0 !important;
+    margin-top: 0 !important; margin-bottom: 0 !important;
+    max-width: none !important;
+  }
+
+  /* .site-inner: strip padding, width cap and bottom margin, but KEEP
+     its top margin so the fixed header still has its clearance. */
+  .site-inner {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: none !important;
+  }
+
+  /* Paint the page navy so no white shows in the small gap under the
+     fixed header or above the footer. The header and footer keep
+     their own backgrounds. */
+  body.page, .site-container, .site-inner, .content-sidebar-wrap,
+  .content, .entry, .entry-content { background: #042D47 !important; }
+
+  /* All .ibvr rules below are scoped so they never touch the rest of the site */
+  .ibvr, .ibvr *, .ibvr *::before, .ibvr *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* The theme gives bare p, h2, h3 and button its own margins and styles
+     (e.g. `.entry-content p { margin-bottom: 26px }`), which outrank the
+     reset above. These put them back to zero. */
+  .ibvr p, .ibvr h1, .ibvr h2, .ibvr h3 { margin: 0; padding: 0; border: 0; }
+  .ibvr button {
+    margin: 0; border: 0; border-radius: 0; background: none;
+    box-shadow: none; text-shadow: none;
+    text-transform: none; letter-spacing: normal; white-space: normal;
+    width: auto; min-width: 0; min-height: 0; height: auto;
+    -webkit-appearance: none; appearance: none;
+    font: inherit; color: inherit; line-height: inherit;
+  }
+
+  .ibvr {
+    --tangerine:  #F15F3E;
+    --sunflower:  #FAA439;
+    --prussian:   #042D47;
+    --prussian-mid: #063654;
+    --celestial:  #499BC3;
+    --celestial-dark: #3a7fa3;
+    --celestial-text: #62AED2; /* a touch lighter than celestial, so small text on navy passes contrast */
+    --white:      #FFFFFF;
+
+    background: var(--prussian);
+    color: #E7EDF1;
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+
+    /* Force full-bleed edge-to-edge, even inside a boxed theme layout */
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  .ibvr h1, .ibvr h2, .ibvr h3 {
+    font-family: 'Aleo', Georgia, serif;
+    line-height: 1.15;
+  }
+
+  /* ── HERO ── */
+  .ibvr .hero {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 48px 72px;
+    text-align: center;
+  }
+
+  .ibvr .hero-kicker {
+    font-family: 'Barlow', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--sunflower);
+    margin: 0 auto 18px;
+    max-width: 600px;
+    line-height: 1.45;
+    text-wrap: balance;
+  }
+
+  .ibvr .hero h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  /* Second headline line: "On the" in white, only "executive's terms." in the sunflower italic accent */
+  .ibvr .hero h1 .h1-line { display: block; }
+
+  .ibvr .hero h1 em {
+    font-style: italic;
+    color: var(--sunflower);
+  }
+
+  .ibvr .hero-sub {
+    text-wrap: balance;
+    font-weight: 500;
+    font-size: 20px;
+    color: #E7EDF1;
+    max-width: 640px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  /* ── CTA ── */
+  .ibvr .cta-block { text-align: center; }
+
+  .ibvr .cta-primary {
+    display: inline-block;
+    background: var(--celestial);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 16px 44px;
+    border-radius: 39px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(73,155,195,0.25);
+    margin-bottom: 14px;
+  }
+
+  .ibvr .cta-primary:hover {
+    background: var(--celestial-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(73,155,195,0.35);
+  }
+
+  .ibvr .cta-primary:focus-visible,
+  .ibvr a:focus-visible {
+    outline: 3px solid var(--sunflower);
+    outline-offset: 3px;
+  }
+
+  .ibvr .cta-note {
+    font-size: 16px;
+    font-weight: 500;
+    color: #C6D8E4;
+    text-wrap: balance;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .ibvr .how-section {
+    background: var(--prussian-mid);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 64px 48px 72px;
+  }
+
+  .ibvr .how-inner,
+  .ibvr .faq-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .ibvr .section-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--celestial-text);
+    margin-bottom: 14px;
+  }
+
+  .ibvr .section-title {
+    font-family: 'Aleo', serif;
+    font-size: clamp(26px, 3.5vw, 42px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 52px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  .ibvr .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+
+  .ibvr .step-num {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--celestial-text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ibvr .step-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(73,155,195,0.25);
+  }
+
+  .ibvr .step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  /* Step 1 title doubles as a link that opens the same Paperform popup */
+  .ibvr .step h3 .step-link {
+    color: var(--white);
+    cursor: pointer;
+    text-align: left;
+    text-decoration: underline;
+    text-decoration-color: var(--sunflower);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    transition: color 0.2s;
+  }
+
+  .ibvr .step h3 .step-link:hover { color: var(--sunflower); }
+
+  .ibvr .step h3 .step-link:focus-visible {
+    outline: 3px solid var(--sunflower);
+    outline-offset: 3px;
+  }
+
+  .ibvr .step p {
+    font-size: 17px;
+    color: #C6D8E4;
+    line-height: 1.65;
+  }
+
+  /* ── ABOUT INFLUENCE BOARD ── */
+  .ibvr .ib-section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .ibvr .ib-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .ibvr .ib-copy h2 {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .ibvr .ib-copy p {
+    font-size: 18px;
+    color: #C6D8E4;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .ibvr .stat-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ibvr .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(73,155,195,0.16);
+    border-radius: 10px;
+    padding: 22px 26px;
+    transition: border-color 0.2s;
+  }
+
+  .ibvr .stat-card:hover { border-color: rgba(73,155,195,0.35); }
+
+  .ibvr .stat-value {
+    font-family: 'Aleo', serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--sunflower);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .ibvr .stat-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #C6D8E4;
+    line-height: 1.5;
+  }
+
+  /* ── CHARITY ── */
+  .ibvr .charity-section {
+    background: var(--prussian-mid);
+    border-top: 1px solid rgba(250,164,57,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 72px 48px;
+    text-align: center;
+  }
+
+  .ibvr .charity-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .ibvr .charity-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(250,164,57,0.12);
+    margin-bottom: 24px;
+  }
+
+  .ibvr .charity-icon .material-symbols-outlined {
+    font-size: 28px;
+    color: var(--sunflower);
+  }
+
+  .ibvr .charity-section h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: var(--sunflower);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .ibvr .charity-section p.charity-copy {
+    font-size: 18px;
+    color: #C6D8E4;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+
+  .ibvr .impact-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .ibvr .impact-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(250,164,57,0.18);
+    border-radius: 10px;
+    padding: 22px 16px;
+  }
+
+  .ibvr .impact-stat .stat-value { color: var(--white); font-variant-numeric: tabular-nums; }
+  .ibvr .impact-stat:first-child .stat-value { color: var(--sunflower); }
+
+  /* ── FAQ (the one light section: white, dark text, homepage-style rust label) ── */
+  .ibvr .faq-section {
+    background: var(--white);
+    padding: 80px 48px;
+  }
+
+  .ibvr .faq-section .section-eyebrow { color: #B0472C; }
+
+  .ibvr .faq-section .section-title {
+    color: var(--prussian);
+    margin-bottom: 44px;
+  }
+
+  .ibvr .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 56px;
+  }
+
+  .ibvr .faq-item {
+    border-top: 1px solid rgba(4,45,71,0.14);
+    padding-top: 22px;
+  }
+
+  .ibvr .faq-item h3 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--prussian);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .ibvr .faq-item p {
+    font-size: 17px;
+    color: #3C3C3C;
+    line-height: 1.65;
+  }
+
+  /* ── FINAL CTA ── */
+  .ibvr .final-cta-band {
+    background: var(--prussian-mid);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ibvr .final-cta {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 88px 48px 100px;
+    text-align: center;
+  }
+
+  .ibvr .final-cta h2 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 32px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .ibvr .final-cta .cta-note { margin-top: 2px; }
+
+  .ibvr .final-cta .cta-note a {
+    color: var(--celestial-text);
+    text-decoration: none;
+    border: 0;
+  }
+
+  .ibvr .final-cta .cta-note a:hover { color: var(--white); }
+
+  /* Avoid single-word last lines across body copy, and use medium
+     weight so the secondary text reads clearly on navy. */
+  .ibvr .step p,
+  .ibvr .ib-copy p,
+  .ibvr .charity-copy,
+  .ibvr .faq-item p {
+    text-wrap: pretty;
+    font-weight: 500;
+  }
+
+  .ibvr .faq-section .faq-item p { font-weight: 400; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .ibvr .hero { padding: 44px 24px 56px; }
+    .ibvr .hero-sub { font-size: 18px; }
+    .ibvr .cta-primary { padding: 16px 36px; }
+    .ibvr .how-section { padding: 56px 24px 60px; }
+    .ibvr .section-title { margin-bottom: 36px; }
+    .ibvr .steps { grid-template-columns: 1fr; gap: 28px; }
+    .ibvr .ib-section { padding: 60px 24px; }
+    .ibvr .ib-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ibvr .charity-section { padding: 56px 24px; }
+    .ibvr .impact-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ibvr .impact-stat:first-child { grid-column: 1 / -1; }
+    .ibvr .impact-stat .stat-value { font-size: 30px; }
+    .ibvr .faq-section { padding: 60px 24px; }
+    .ibvr .faq-section .section-title { margin-bottom: 32px; }
+    .ibvr .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+    .ibvr .final-cta { padding: 64px 24px 80px; }
+  }
+
+  @media (max-width: 380px) {
+    .ibvr .cta-primary { padding: 16px 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ibvr .cta-primary { transition: none; }
+    .ibvr .cta-primary:hover { transform: none; }
+  }
+</style>
+
+<div class="ibvr">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-kicker">The executives you want no longer respond to a cold pitch.</p>
+
+    <h1>There's another way in. <span class="h1-line">On the <em>executive's terms.</em></span></h1>
+
+    <p class="hero-sub">
+      Executives provide Influence Board with their rules for access, and we enforce those rules on their behalf, including donations to their causes when meetings happen. You only pay for completed meetings.
+    </p>
+
+    <div class="cta-block">
+      <button type="button" class="cta-primary" data-paperform-id="meeting-requester" data-popup-button="1">Introduce yourself</button>
+      <p class="cta-note">It only takes a minute. We'll review it and follow up personally.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Three steps from request to meeting.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3><button type="button" class="step-link" data-paperform-id="meeting-requester" data-popup-button="1">Introduce yourself</button></h3>
+          <p>Tell us about your company and who you want to reach. A startup has different needs than a Fortune&nbsp;1000 team, so this is how we find the best way to work with you.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>We craft your request</h3>
+          <p>We work closely with our executives, so we know what they respond to. We shape your offering into a request built for them, check it against their rules, and submit it on your behalf only when it fits.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Start the meeting warm</h3>
+          <p>When an executive accepts a request, it's because it's been vetted and fits what they're looking for. You'll already know the cause they support, so the meeting starts from common ground instead of a cold open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT INFLUENCE BOARD -->
+  <section class="ib-section">
+    <div class="ib-grid">
+      <div class="ib-copy">
+        <div class="section-eyebrow">About Influence Board</div>
+        <h2>Built for conversations that actually matter.</h2>
+        <p>Influence Board is where senior business leaders set the terms for the vendor conversations they take, and every meeting funds a cause they care about.</p>
+        <p>Every executive in our network has opted in. Every meeting is intentional. And every conversation you have through us reaches someone who has genuinely agreed to listen.</p>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-value">2,000+</div>
+          <div class="stat-label">Executives who prioritize meetings through Influence Board, and growing every day</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">C-suite</div>
+          <div class="stat-label">CIOs, CFOs, CTOs, and senior decision-makers across industries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARITY -->
+  <section class="charity-section">
+    <div class="charity-inner">
+      <div class="charity-icon">
+        <span class="material-symbols-outlined" aria-hidden="true">volunteer_activism</span>
+      </div>
+      <h2>Every meeting funds a cause.</h2>
+      <p class="charity-copy">When an executive takes a meeting through Influence Board, a donation goes to a nonprofit of their choosing. It's how we've built a network of leaders who show up prepared, engaged, and genuinely ready to talk.</p>
+      <div class="impact-stats">
+        <div class="impact-stat">
+          <div class="stat-value" data-countup>$300,000+</div>
+          <div class="stat-label">raised for charity</div>
+        </div>
+        <div class="impact-stat">
+          <div class="stat-value" data-countup>800+</div>
+          <div class="stat-label">meetings held on executive terms</div>
+        </div>
+        <div class="impact-stat">
+          <div class="stat-value" data-countup>250+</div>
+          <div class="stat-label">causes funded</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="section-eyebrow">The questions we get most</div>
+      <h2 class="section-title">FAQs</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is this pay-to-play?</h3>
+          <p>No, you can't buy a yes. Every request is checked against the terms the executive set, and then they decide whether they will take the meeting. You're only charged if they accept.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if they cancel?</h3>
+          <p>We'll try our best to get them to reschedule. If the meeting still doesn't happen, you don't pay for it, and any charge will be refunded.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What does it cost?</h3>
+          <p>We've got different services depending on your company's offering and needs. The cost per meeting depends on the executive. Each one sets a donation for their time.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Where does the money go?</h3>
+          <p>100% of your donation goes to the executive's chosen charity. Influence Board's platform fee is charged separately, so it never reduces the amount the charity receives.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I pick the executive?</h3>
+          <p>Yes. Name who you want to meet, and if they're on Influence Board, we'll submit your request to them. If they're not, or you're not sure yet, tell us who you sell to and we'll match you with executives who fit, and we can recruit the others to join as part of the service.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I need to sign a contract?</h3>
+          <p>A short agreement, yes. Some options have no monthly fee and no commitment. Others run on a set term. We'll recommend the one that fits after you introduce yourself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta-band">
+    <section class="final-cta">
+      <h2>Ready to get your meetings?</h2>
+      <button type="button" class="cta-primary" data-paperform-id="meeting-requester" data-popup-button="1">Introduce yourself</button>
+      <p class="cta-note">
+        Questions? Reach us at <a href="mailto:crystal@influenceboard.com">crystal@influenceboard.com</a>
+      </p>
+    </section>
+  </div>
+
+</div><!-- /.ibvr -->
+
+<!-- Count-up for the impact numbers (same behavior as the homepage).
+     Written with no ampersands and no less-than signs on purpose: WordPress
+     rewrites those inside inline scripts and the script silently dies.
+     The real numbers are in the HTML, so without JS they still show. -->
+<script>
+(function () {
+  var els = document.querySelectorAll('.ibvr [data-countup]');
+  if (!els.length) { return; }
+  var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+  if (reduce) { return; }
+  if (!('IntersectionObserver' in window)) { return; }
+
+  var items = [];
+  els.forEach(function (el) {
+    var m = /^(\D*)([\d,]+)(.*)$/.exec(el.textContent.trim());
+    if (!m) { return; }
+    items.push({ el: el, pre: m[1], target: parseInt(m[2].replace(/,/g, ''), 10), post: m[3], done: false });
+    el.textContent = m[1] + '0' + m[3];
+  });
+  if (!items.length) { return; }
+
+  function run(item) {
+    if (item.done) { return; }
+    item.done = true;
+    var dur = 1500, t0 = null;
+    function step(ts) {
+      if (t0 === null) { t0 = ts; }
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      item.el.textContent = item.pre + Math.round(item.target * eased).toLocaleString('en-US') + item.post;
+      if (1 > p) { requestAnimationFrame(step); }
+      else { item.el.textContent = item.pre + item.target.toLocaleString('en-US') + item.post; }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) { return; }
+      var item = items.filter(function (i) { return i.el === e.target; })[0];
+      if (item) { run(item); }
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.6 });
+  items.forEach(function (i) { io.observe(i.el); });
+})();
+</script>
+
+<!-- Paperform popup embed (loads once; powers all three "Introduce yourself" triggers above).
+     Same as Paperform's popup code, plus a backup: if the Paperform script is blocked
+     (an ad blocker, a network filter), the triggers open the form page directly instead
+     of doing nothing. -->
+<script>(function() {
+  var formUrl = 'https://meeting-requester.paperform.co';
+  var script = document.createElement('script');
+  script.src = 'https://paperform.co/__embed.min.js';
+  script.onerror = function () {
+    document.querySelectorAll('.ibvr [data-paperform-id]').forEach(function (btn) {
+      btn.addEventListener('click', function () { window.location.href = formUrl; });
+    });
+  };
+  document.body.appendChild(script);
+})()</script>
+
+<!-- ============================================================= -->
+<!-- ===== END PASTE ============================================= -->
+<!-- ============================================================= -->
+
+</body>
+</html>
