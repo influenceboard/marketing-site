@@ -10,7 +10,7 @@ A home for Influence Board's marketing web pages: self-contained, brand-consiste
 | [vendor-redirect](./vendor-redirect) | Landing page for vendors redirected to Influence Board through the Cirrus Insight integration | https://influenceboard.com/new-model-for-executive-access/ |
 | [candidate-portal](./candidate-portal) | Landing page for executives invited to join. Single Custom HTML block on page 5879. | https://influenceboard.com/candidate-portal/ |
 | [meeting-requester](./meeting-requester) | Page for companies requesting meetings with executives. Single Custom HTML block on page 1629. | https://influenceboard.com/meeting-requester/ |
-| [proSapient partner page](prosapient/) | https://influenceboard.com/prosapient/ | Where executives invited by proSapient land. Shows how an Influence Board meeting differs from an expert call. |
+| [proSapient partner page](prosapient/) | Where executives invited by proSapient land. Shows how an Influence Board meeting differs from an expert call. | https://influenceboard.com/prosapient/ |
 
 ## Conventions
 
