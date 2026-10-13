@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Influence Board | Forward vendor emails (preview)</title>
+  <meta name="description" content="Set up a one-drag Outlook rule that replies to vendor emails and points them to Influence Board.">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- PREVIEW-ONLY: this line just makes the file look right when you open it in a browser. Do NOT paste it into WordPress. -->
+  <style>body{margin:0;background:#f5f8fa;}  @media (prefers-reduced-motion: reduce) { .ibvr .flow li + li::before { animation: none !important; opacity: 1; } }
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- ===== PASTE EVERYTHING BELOW INTO YOUR WORDPRESS PAGE ======== -->
+<!-- (One Custom HTML block on the new /deflection/ page.           -->
+<!--  KEEP the theme header, nav and footer on this page.)          -->
+<!-- ============================================================= -->
+
+<link href="https://fonts.googleapis.com/css2?family=Aleo:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* THEME INTEGRATION: this page only. Same approach as Meeting Requester.
+     Keep the site header, nav and footer. Hide only the page-title banner.
+     Do not zero margin-top on .site-inner: it keeps content clear of the
+     fixed Altitude Pro header. */
+  .entry-header, .entry-title, .page-header, .archive-title { display: none !important; }
+  .content-sidebar-wrap, .content, .entry, .entry-content {
+    padding-top: 0 !important; padding-bottom: 0 !important;
+    margin-top: 0 !important; margin-bottom: 0 !important;
+    max-width: none !important;
+  }
+  .site-inner { padding: 0 !important; margin-bottom: 0 !important; max-width: none !important; }
+  body.page, .site-container, .site-inner, .content-sidebar-wrap,
+  .content, .entry, .entry-content { background: #f5f8fa !important; }
+
+  /* Everything below is scoped to .ibvr so it never touches the rest of the site */
+  .ibvr, .ibvr *, .ibvr *::before, .ibvr *::after { box-sizing: border-box; }
+  .ibvr p, .ibvr h1, .ibvr h2, .ibvr ol, .ibvr figure, .ibvr table { margin: 0; padding: 0; border: 0; }
+  .ibvr button {
+    margin: 0; border: 0; box-shadow: none; text-shadow: none; text-transform: none;
+    letter-spacing: normal; width: auto; min-width: 0; min-height: 0; height: auto;
+    -webkit-appearance: none; appearance: none; line-height: 1.2;
+  }
+
+  .ibvr {
+    --prussian:#042D47; --prussian-mid:#063654; --celestial-dark:#3a7fa3;
+    --sunflower:#FAA439; --coral:#F15F3E; --ink:#1d2a33; --muted:#5b6b76; --line:#dde5ea;
+    --bg:#f5f8fa; --card:#ffffff; --tint:#eef6fa;
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.6 "Barlow", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100vw; max-width: 100vw; position: relative; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw; overflow-x: hidden; overflow-x: clip;
+  }
+  .ibvr .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  .ibvr .hero { background: var(--prussian); color: #fff; padding: 48px 16px 40px; }
+  .ibvr .hero .wrap { padding: 0; }
+  .ibvr .eyebrow { color: var(--sunflower); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+  .ibvr h1 { font-family: "Aleo", Georgia, serif; font-weight: 700; color: #fff; font-size: 34px; line-height: 1.2; margin: 8px 0 12px; text-wrap: balance; }
+  .ibvr .hero p { margin: 0; color: #cfe3ee; font-size: 18px; max-width: 600px; }
+  /* How-it-works strip: a static sequence, styled so nothing looks like a button */
+  /* How-it-works strip: one connected sequence. Arrows nudge in turn so the row reads as a single flow. */
+  .ibvr .flow { list-style: none; display: flex; flex-wrap: nowrap; align-items: flex-start; margin: 28px 0 0; padding: 20px 0 0; border-top: 1px solid rgba(255,255,255,.14); cursor: default; }
+  .ibvr .flow li { list-style: none; flex: none; white-space: nowrap; display: flex; align-items: flex-start; margin: 0; padding: 0; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.35; }
+  .ibvr .flow li + li::before { content: "\2192"; flex: none; display: inline-block; margin: -3px 12px 0 10px; color: var(--sunflower); font-size: 20px; font-weight: 700; line-height: 1.2; animation: ibvr-nudge-x 2.4s ease-in-out infinite; }
+  .ibvr .flow li:nth-child(3)::before { animation-delay: .5s; }
+  @keyframes ibvr-nudge-x { 0%, 55%, 100% { transform: translateX(0); opacity: .65; } 25% { transform: translateX(4px); opacity: 1; } }
+  @keyframes ibvr-nudge-y { 0%, 55%, 100% { transform: translateY(0); opacity: .65; } 25% { transform: translateY(3px); opacity: 1; } }
+  .ibvr .flow .fn { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--sunflower); color: var(--prussian); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin: -1px 10px 0 0; }
+  .ibvr .main { padding: 40px 16px 24px; }
+  .ibvr .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
+  .ibvr h2 { font-family: "Aleo", Georgia, serif; font-weight: 700; color: var(--prussian); font-size: 22px; line-height: 1.25; margin: 0 0 16px; display: flex; align-items: center; gap: 12px; }
+  .ibvr .num { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--prussian); color: #fff; font: 600 16px "Barlow", sans-serif; display: inline-flex; align-items: center; justify-content: center; }
+  .ibvr ol { margin: 0 0 4px; padding-left: 22px; }
+  .ibvr li { margin: 6px 0; }
+  .ibvr b { color: var(--prussian); }
+  .ibvr code { background: var(--tint); color: var(--ink); border-radius: 4px; padding: 1px 6px; font-size: 14px; word-break: break-all; }
+  .ibvr p + p { margin-top: 12px; }
+
+  .ibvr figure { margin: 20px 0 24px; background: #e9eef2; border-radius: 10px; padding: 14px 16px 16px; display: flex; flex-direction: column; align-items: center; }
+  .ibvr figure::before { content: "Screenshot"; align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ibvr figure img { display: block; width: 100%; max-width: 520px; height: auto; background: #fff; border: 1px solid #cfd8de; border-radius: 6px; box-shadow: 0 2px 10px rgba(4,45,71,.12); }
+  .ibvr figcaption { align-self: stretch; color: var(--muted); font-size: 14px; margin-top: 10px; text-align: center; }
+  .ibvr figure + ol, .ibvr figure + .note, .ibvr .note + ol, .ibvr .template + ol, .ibvr ol + .template { margin-top: 20px; }
+
+  .ibvr .note { border-left: 4px solid var(--sunflower); background: #fff8ee; padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 14px 0 4px; font-size: 15px; }
+
+  .ibvr .template { position: relative; background: var(--tint); border: 1px solid #cfe3ee; border-radius: 8px; padding: 14px 16px 12px; }
+  .ibvr .tpl-label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--celestial-dark); margin-bottom: 10px; padding-right: 96px; }
+  .ibvr .template p { margin: 0 0 10px; }
+  .ibvr .template a { color: var(--celestial-dark); text-decoration: underline; }
+  .ibvr button.copy { position: absolute; top: 10px; right: 10px; background: var(--prussian); color: #fff; border-radius: 6px; padding: 6px 12px; font: 600 13px "Barlow", sans-serif; cursor: pointer; }
+  .ibvr button.copy:hover { background: var(--celestial-dark); }
+
+  .ibvr table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .ibvr td { border: 0; border-top: 1px solid var(--line); padding: 10px 8px; vertical-align: top; background: none; }
+  .ibvr td:first-child { font-weight: 600; color: var(--prussian); width: 38%; }
+  .ibvr .foot { color: var(--muted); font-size: 14px; text-align: center; padding: 8px 16px 48px; }
+  .ibvr .foot a { color: var(--celestial-dark); }
+
+  @media (max-width: 640px) {
+    .ibvr .flow { flex-direction: column; }
+    .ibvr .flow li { white-space: normal; }
+    .ibvr .flow .fbr { display: none; }
+    .ibvr .flow li + li { margin-top: 26px; position: relative; }
+    .ibvr .flow li + li::before { content: "\2193"; position: absolute; left: 6px; top: -25px; margin: 0; font-size: 17px; animation-name: ibvr-nudge-y; }
+  }
+  @media (max-width: 560px) {
+    .ibvr h1 { font-size: 27px; }
+    .ibvr .hero { padding: 36px 16px 32px; }
+    .ibvr .hero p { font-size: 17px; }
+    .ibvr .main { padding: 24px 12px 16px; }
+    .ibvr .card { padding: 18px 16px; }
+    .ibvr h2 { font-size: 20px; }
+    .ibvr figure { padding: 10px 10px 12px; margin: 16px 0 18px; }
+    .ibvr button.copy { padding: 12px 14px; }
+    .ibvr .tpl-label { padding-right: 108px; padding-top: 4px; }
+    .ibvr td:first-child { width: auto; }
+    .ibvr td { display: block; border: 0; padding: 4px 0; }
+    .ibvr tr { display: block; border-top: 1px solid var(--line); padding: 8px 0; }
+  }
+</style>
+
+<div class="ibvr">
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Influence Board · For executives</div>
+      <h1>Send vendor emails to Influence Board with one drag</h1>
+      <p>Set this up once in Microsoft Power Automate. Then drag any vendor email into a folder, and a reply goes out from your inbox pointing the vendor to Influence Board.</p>
+      <ol class="flow" aria-label="How it works">
+        <li><span class="fn">1</span><span class="ft">Vendor emails you</span></li>
+        <li><span class="fn">2</span><span class="ft">You drag it to<br class="fbr"> Vendors&nbsp;Forward</span></li>
+        <li><span class="fn">3</span><span class="ft">Reply goes out<br class="fbr"> within 5&nbsp;min</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="main wrap">
+
+    <section class="card">
+      <h2><span class="num">1</span>Make a folder in Outlook</h2>
+      <p>Create a new Outlook folder named <b>Vendors Forward</b>. If another tool already uses a folder called "Vendors," keep this one separate.</p>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">2</span>Build the flow</h2>
+      <ol>
+        <li>Go to <code>make.powerautomate.com</code> and click <b>Create</b> in the left menu.</li>
+      </ol>
+      <figure>
+        <img src="https://influenceboard.com/wp-content/uploads/2026/10/deflection-1-create-menu.webp" width="1020" height="490" loading="lazy" decoding="async" alt="Power Automate home page with Create highlighted in the left menu">
+        <figcaption>Create is in the left menu.</figcaption>
+      </figure>
+      <ol start="2">
+        <li>Click <b>Automated cloud flow</b> and name it <b>Vendors Forward</b>, same as the folder.</li>
+        <li>Search <b>new email arrives</b>, select <b>When a new email arrives (V3)</b> under <b>Office 365 Outlook</b>, then click <b>Create</b>.</li>
+      </ol>
+      <figure>
+        <img src="https://influenceboard.com/wp-content/uploads/2026/10/deflection-2-new-email-trigger.webp" width="902" height="572" loading="lazy" decoding="async" alt="Build an automated cloud flow window with When a new email arrives (V3), Office 365 Outlook, and the Create button highlighted">
+        <figcaption>Pick Office 365 Outlook, not Outlook.com. Your work email is Office 365 even when you open it in a browser.</figcaption>
+      </figure>
+      <ol start="4">
+        <li>Click the <b>When a new email arrives (V3)</b> box. Next to Advanced parameters, click <b>Show all</b>.</li>
+        <li>Set <b>Folder</b> to <b>Vendors Forward</b> with the folder icon. Leave the rest as is.</li>
+      </ol>
+      <figure>
+        <img src="https://influenceboard.com/wp-content/uploads/2026/10/deflection-3-folder-setting.webp" width="630" height="585" loading="lazy" decoding="async" alt="Trigger settings with Folder set to Vendors Forward and the connected account shown">
+        <figcaption>Folder is Vendors Forward. The bottom shows your work account as connected.</figcaption>
+      </figure>
+      <div class="note"><b>Says "Not connected"?</b> Click <b>Change connection</b> at the bottom of the panel and pick your work account. If it isn't listed, click <b>Add new</b> and sign in.</div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">3</span>Add the reply and save</h2>
+      <ol>
+        <li>Click the <b>+</b> under the first box, then <b>Add an action</b>. Search <b>Reply to email</b> and pick <b>Reply to email (V3)</b>.</li>
+        <li><b>Message Id:</b> click in the field, then the lightning bolt (or type <b>/</b>). Under When a new email arrives, choose <b>Message Id</b>.</li>
+        <li>Open <b>Advanced parameters</b> and check <b>Body</b> and <b>Reply All</b>.</li>
+        <li><b>Body:</b> paste the message below. Adjust as desired and add your name.</li>
+      </ol>
+
+      <div class="template" id="ibvr-tpl">
+        <button class="copy" type="button" onclick="ibvrCopyTpl(this)">Copy text</button>
+        <div class="tpl-label">Templated, adjust as desired</div>
+        <div class="tpl-body">
+          <p>Thanks for reaching out to me.</p>
+          <p>To make the best use of your time and mine, all outreach is routed through <a href="https://influenceboard.com/new-model-for-executive-access/">Influence Board</a>. Visit the link to learn how the process works and connect with the right person on our team.</p>
+          <p>[Your name]</p>
+        </div>
+      </div>
+
+      <ol start="5">
+        <li>Highlight <b>Influence Board</b>, click the <b>link icon</b> in the toolbar, and paste:<br><code>https://influenceboard.com/new-model-for-executive-access/</code></li>
+        <li><b>Reply All:</b> set to <b>No</b>. Leave To, CC, BCC and Subject blank. The reply goes to the vendor and keeps their subject line.</li>
+        <li>Click <b>Save</b> at the top. A green bar says "Your flow is ready to go."</li>
+      </ol>
+      <figure>
+        <img src="https://influenceboard.com/wp-content/uploads/2026/10/deflection-4-reply-settings.webp" width="630" height="740" loading="lazy" decoding="async" alt="Finished Reply to email settings: Message Id tag, body text with link, Reply All set to No">
+        <figcaption>Finished: Message Id tag, your message with Influence Board linked, Reply All set to No.</figcaption>
+      </figure>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">4</span>Test it</h2>
+      <ol>
+        <li>From a personal email, send a short test to your work email.</li>
+        <li>In Outlook, drag it into <b>Vendors Forward</b>.</li>
+        <li>Within <b>5 minutes</b>, the reply lands in your personal inbox. Check spam, and click the link to make sure it works.</li>
+      </ol>
+      <p style="margin-top:12px">To see runs, go to <b>My flows</b> and open <b>Vendors Forward</b>. Status should be <b>On</b>.</p>
+      <figure>
+        <img src="https://influenceboard.com/wp-content/uploads/2026/10/deflection-5-run-history.webp" width="675" height="522" loading="lazy" decoding="async" alt="Flow details page with Status On and the 28-day run history section">
+        <figcaption>Each run shows under 28-day run history. Click <b>All runs</b> to refresh.</figcaption>
+      </figure>
+    </section>
+
+    <section class="card">
+      <h2>If something's off</h2>
+      <table>
+        <tr><td>"Not connected" at the bottom of a box</td><td>Click <b>Change connection</b> and pick your work account.</td></tr>
+        <tr><td>Red "Invalid parameters" on the reply box</td><td>Message Id is empty. Add the Message Id tag from step 3.</td></tr>
+        <tr><td>No reply after 5 minutes</td><td>Save the flow <b>before</b> dragging an email in. Emails moved before saving won't trigger it. Send a fresh test.</td></tr>
+        <tr><td>An older email didn't get a reply</td><td>Microsoft goes by when an email first arrived, so emails that are days old can get skipped. Use it on new vendor emails as they come in.</td></tr>
+        <tr><td>Can't open Power Automate</td><td>Your Microsoft 365 plan may not include it. Check with your IT team.</td></tr>
+      </table>
+    </section>
+
+  </div>
+
+  <div class="foot">Questions? Email <a href="mailto:crystal@influenceboard.com">crystal@influenceboard.com</a>.</div>
+
+</div>
+
+<script>
+function ibvrCopyTpl(btn) {
+  var body = document.querySelector('#ibvr-tpl .tpl-body');
+  var html = body.innerHTML;
+  var text = body.innerText.trim();
+  function done() {
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = 'Copy text'; }, 1800);
+  }
+  function plain() {
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done); }
+  }
+  try {
+    if (navigator.clipboard) {
+      if (window.ClipboardItem) {
+        navigator.clipboard.write([new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })]).then(done, plain);
+        return;
+      }
+    }
+    plain();
+  } catch (e) { plain(); }
+}
+</script>
+
+<!-- ============================================================= -->
+<!-- ===== END PASTE ============================================= -->
+<!-- ============================================================= -->
+
+</body>
+</html>
