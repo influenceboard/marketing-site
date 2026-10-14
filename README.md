@@ -12,6 +12,7 @@ A home for Influence Board's marketing web pages: self-contained, brand-consiste
 | [meeting-requester](./meeting-requester) | Page for companies requesting meetings with executives. Single Custom HTML block on page 1629. | https://influenceboard.com/meeting-requester/ |
 | [proSapient partner page](prosapient/) | Where executives invited by proSapient land. Shows how an Influence Board meeting differs from an expert call. | https://influenceboard.com/prosapient/ |
 | [Vendor deflection guide](deflection/) | Setup guide for executives: a one-drag Outlook rule that replies to vendors and points them to Influence Board. | https://influenceboard.com/deflection/ |
+| [Vendor guide](vendor-guide/) | Unlisted walkthrough for Meeting Requesters: how to find executives, send a request, pay, and schedule. | https://influenceboard.com/vendor-guide/ |
 
 ## Conventions
 
